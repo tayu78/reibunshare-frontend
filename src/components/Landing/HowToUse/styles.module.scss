@@ -1,0 +1,74 @@
+@use "../../../styles/base" as *;
+
+.howToUse{
+    img[alt="iphone"]  {
+        width: 90%;
+
+    }
+}
+
+.sectionTitle {
+    margin-bottom: 5rem;
+}
+
+.gridContainer{
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.5fr;
+    gap: 1rem;
+    justify-content: center;
+    @include for-md-screen{
+     grid-template-columns: 1fr 1fr;
+    }
+
+   > div {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        @include for-md-screen {
+            grid-column: span 1;
+        }
+        @include for-sm-screen {
+            grid-column: span 2;
+        }
+    }
+
+    > div:nth-of-type(2){
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        @include for-md-screen {
+            grid-column: span 2;
+            order: -1;
+            width: 30%;
+            justify-self: center;
+        }
+
+     }
+}
+
+.content {
+    width: 90%;
+    margin: 0 auto;
+   
+
+    div {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    p {
+       width: 90%;
+       margin: 0 auto;
+    }
+    h3 {
+        font-size: 2rem ;
+        font-weight: 600;
+        @include for-md-screen {
+            font-size: 1.5rem;
+        }
+    }
+}
+
+

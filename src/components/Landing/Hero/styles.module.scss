@@ -1,0 +1,80 @@
+@use '../../../styles/base' as *;
+
+header{
+    position: relative;
+    height: 100vh;
+
+   @include for-md-screen {
+        padding-top: 35rem;
+        height: auto;
+   }
+
+    @include for-sm-screen {
+        padding-top: 10rem;
+
+  }
+    
+    h1{
+        font-weight: 700;
+        font-size: 3.5rem;
+        line-height: 5.5rem;
+
+        @include for-md-screen {
+            font-size: 2.5rem;
+            line-height: 3.5rem;
+        }
+        @include for-sm-screen {
+            font-size: 2rem;
+            line-height: 3.5rem;
+      }
+       
+    }
+
+    & > div {
+       width: 65%; 
+       position: absolute;
+       margin-top: 15px;
+       left: 0%;
+       top: 50%;
+       transform: translateY(-50%);
+
+       @include for-sm-screen {
+          position: static; 
+          transform: none;
+          width: 100%;
+          text-align: center;
+        }
+
+    }
+    img{
+        width: 55%;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-20%);
+
+        @include for-sm-screen {
+            position: static;  
+            transform: none;
+            display: block;
+            width: 80%;
+            margin: 3rem auto;
+      }
+
+    }
+
+    .btn{
+        background: linear-gradient(90deg, #4AE99C 0%, rgba(55, 235, 149, 0.526042) 50.53%, rgba(35, 237, 140, 0) 106.61%);
+        border: 1px solid #4AE99C;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        margin-left: 20%;
+        margin-top: 10%;
+
+        @include for-sm-screen {
+            margin-left: 0;
+        }
+    }
+    
+  
+}

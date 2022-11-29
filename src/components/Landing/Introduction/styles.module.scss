@@ -1,0 +1,38 @@
+@use "../../../styles/base" as *;
+
+.introduction {
+    font-size: 1.5rem;
+    width: 90%;
+    margin: 0 auto;
+
+    @include for-md-screen{
+        font-size: 1.2rem;
+    }
+    @include for-sm-screen {
+        margin-top: 5rem;
+        font-size: 1rem;
+    }
+
+    img{
+        display:block;
+        margin: 0 auto;
+        margin-bottom: 2rem;
+        @include for-md-screen {
+            width: 130px;
+        }
+
+        @include for-sm-screen {
+            width: 100px;
+        }
+    }
+
+    p{
+        margin-bottom: 1rem ;
+        line-height: 1.2;
+    }
+
+    // @include for-sm-screen {
+    //     font-size: 1rem;
+    // }
+
+}

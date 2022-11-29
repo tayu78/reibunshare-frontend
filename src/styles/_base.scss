@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap');
+
+$FONT_WHITE:#E0E0E0;
+$FONT_GREEN: #4AE99C;
+$FONT_YELLOW_DARK : #BFD24E;
+
+$BG_BLACK_PRIMARY: #383838;
+$BG_BLACK_SECONDARY: #595959;
+
+$MAX_WIDTH: 1200px;
+
+
+
+
+@mixin for-md-screen {
+    @media (max-width: 1023px) {
+        @content;
+    }
+}
+@mixin for-sm-screen {
+    @media (max-width:767px) {
+        @content;
+    }
+}
+
+
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+    font-family: 'Fredoka', sans-serif;
+    color: $FONT_WHITE; 
+}
+
+a {
+    text-decoration: none;
+    color: $FONT_WHITE;
+}
+
+li {
+    list-style: none;
+}
+
+.container {
+    max-width: $MAX_WIDTH;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.btn {
+    border: 1px solid #fff;
+    padding: .6rem .7rem;
+    border-radius: 7px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.sectionTitle {
+        margin-top: 10rem;
+        text-align: center;
+        color: $FONT_YELLOW_DARK;
+        font-size: 3rem;
+        font-weight: 700;
+
+        @include for-sm-screen {
+            font-size: 2.5rem;
+        }
+}
+
+
+// font 
+.fontGreen{
+    color: $FONT_GREEN;
+}
+
+
+// background
+.bgBlackPrimary{
+    background-color: $BG_BLACK_PRIMARY;
+}
