@@ -8,19 +8,50 @@ $PADDING_TOP:2rem;
     max-width: 300px;
     padding-top: $PADDING_TOP;
     padding-left: 1rem;
+    
+
+
+    @include for-sm-screen{
+        position: fixed;
+        bottom: 0;
+        width: 100vw;
+        max-width: none;
+        min-height: initial;
+        padding: 0;
+        border-top: #717171 1px solid;
+    }
+
+    
 
     ul {
         margin-top: 5rem;
+        margin-left: 2rem;
         display: flex;
         flex-direction: column;
         gap: 2rem;
+        @include for-md-screen{
+            margin-left: 1.2rem;
+        }
+        @include for-sm-screen{
+            flex-direction: row;
+            margin-top: 0;
+            margin-left: 0;
+            padding: 1rem 2rem;
+            justify-content: space-between;
+            
+        }
+
     }
 
     li {
         font-size: 1.2rem;
+       
     }
 
     .logo {
         margin-left: 1.5rem;
+        @include for-sm-screen{
+            display: none;
+        }
     }
 }

@@ -1,7 +1,10 @@
-@use  "../../../styles/base";
+@use  "../../../styles/base" as *; 
 
 .navLink{
     span{
         margin-left: 1rem;
+        @include for-sm-screen{
+            display: none;
+        }
     }
 }
