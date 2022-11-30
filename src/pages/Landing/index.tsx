@@ -8,7 +8,7 @@ import styles from "./styles.module.scss";
 
 const Landing = () => {
   return (
-    <div className={styles.bgBlackPrimary}>
+    <div className={`${styles.bgBlackPrimary} ${styles.fontFancy}`}>
       <div className={styles.container}>
         <div className={styles.logo}>
           <Logo />

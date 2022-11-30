@@ -4,10 +4,14 @@ $FONT_WHITE:#E0E0E0;
 $FONT_GREEN: #4AE99C;
 $FONT_YELLOW_DARK : #BFD24E;
 
+$FONT_FANCY: 'Fredoka', sans-serif;
+    
+
 $BG_BLACK_PRIMARY: #383838;
 $BG_BLACK_SECONDARY: #595959;
 
 $MAX_WIDTH: 1200px;
+
 
 
 
@@ -28,7 +32,6 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box; 
-    font-family: 'Fredoka', sans-serif;
     color: $FONT_WHITE; 
 }
 
@@ -72,7 +75,9 @@ li {
 .fontGreen{
     color: $FONT_GREEN;
 }
-
+.fontFancy{
+    font-family: $FONT_FANCY;
+}
 
 // background
 .bgBlackPrimary{

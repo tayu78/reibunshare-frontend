@@ -1,6 +1,7 @@
-@use "../../styles/base";
+@use "../../styles/base" as *;
 
 .logo{
+    font-family: $FONT_FANCY;
     img{
         width: 35px;
     }

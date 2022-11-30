@@ -1,0 +1,26 @@
+@use "../../styles/base" as *;
+
+$PADDING_TOP:2rem;
+.navBar{
+    background-color: #292929;
+    width: 25%;
+    min-height: calc(100vh - $PADDING_TOP);
+    max-width: 300px;
+    padding-top: $PADDING_TOP;
+    padding-left: 1rem;
+
+    ul {
+        margin-top: 5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    li {
+        font-size: 1.2rem;
+    }
+
+    .logo {
+        margin-left: 1.5rem;
+    }
+}
