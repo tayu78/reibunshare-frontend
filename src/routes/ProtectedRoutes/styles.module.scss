@@ -1,0 +1,13 @@
+@use "../../styles/base" as *;
+
+.flexContainer{
+    display: flex;
+}
+
+.outlet{
+    background-color: $BG_BLACK_PRIMARY;
+    width: 100%;
+    @include for-sm-screen{
+        min-height: 100vh;
+    }
+}

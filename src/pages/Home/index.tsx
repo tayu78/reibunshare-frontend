@@ -1,9 +1,7 @@
-import Navbar from "../../components/Navbar";
-
 const Home = () => {
   return (
     <>
-      <Navbar />
+      <h1> this is Home!!</h1>
     </>
   );
 };
