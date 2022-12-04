@@ -1,10 +1,9 @@
-import Logo from "../../Logo";
 import styles from "./styles.module.scss";
 import chillingImg from "../../../assets/images/chilling.svg";
 
 const Hero = () => {
   return (
-    <header>
+    <header className={styles.header}>
       <div>
         <h1>
           Find the <span className={styles.fontGreen}>native expressions</span>{" "}
