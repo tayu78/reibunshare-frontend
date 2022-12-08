@@ -1,0 +1,18 @@
+@use "../../../styles/base" as *;
+
+.label{
+    margin-bottom: .5rem;
+    font-weight: 600;
+}
+
+
+.cardField{
+    background-color: $BLACK_SECONDARY;
+    width: 300px;
+    min-height: 40px;    
+    padding: .8rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+}
+
+

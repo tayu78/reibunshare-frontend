@@ -1,15 +1,15 @@
 @use "./reset";
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap');
 
-$FONT_WHITE:#E0E0E0;
-$FONT_GREEN: #4AE99C;
-$FONT_YELLOW_DARK : #BFD24E;
+$WHITE:#E0E0E0;
+$GREEN: #4AE99C;
+$YELLOW_DARK : #BFD24E;
 
 $FONT_FANCY: 'Fredoka', sans-serif;
     
 
-$BG_BLACK_PRIMARY: #383838;
-$BG_BLACK_SECONDARY: #595959;
+$BLACK_PRIMARY: #383838;
+$BLACK_SECONDARY: #595959;
 
 $MAX_WIDTH: 1200px;
 
@@ -33,12 +33,12 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box; 
-    color: $FONT_WHITE; 
+    color: $WHITE; 
 }
 
 a {
     text-decoration: none;
-    color: $FONT_WHITE;
+    color: $WHITE;
 }
 
 li {
@@ -62,7 +62,7 @@ li {
 .sectionTitle {
         margin-top: 10rem;
         text-align: center;
-        color: $FONT_YELLOW_DARK;
+        color: $YELLOW_DARK;
         font-size: 3rem;
         font-weight: 700;
 
@@ -74,7 +74,7 @@ li {
 
 // font 
 .fontGreen{
-    color: $FONT_GREEN;
+    color: $GREEN;
 }
 .fontFancy{
     font-family: $FONT_FANCY;
@@ -82,5 +82,5 @@ li {
 
 // background
 .bgBlackPrimary{
-    background-color: $BG_BLACK_PRIMARY;
+    background-color: $BLACK_PRIMARY;
 }

@@ -1,0 +1,8 @@
+@use "../../../styles/base" as *;
+
+.input {
+    background: $BLACK_SECONDARY;
+    border: none;
+    padding: 1rem;
+    border-radius: .5rem;
+}
