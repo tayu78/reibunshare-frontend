@@ -2,7 +2,7 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import Avatar from "../Avatar";
-import CardField from "./CardField/idex";
+import CardField from "./CardField";
 import styles from "./styles.module.scss";
 import { cardData } from "../../mockDatas/card";
 
