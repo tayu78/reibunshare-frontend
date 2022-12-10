@@ -16,12 +16,12 @@ $MAX_WIDTH: 1200px;
 
 
 @mixin for-md-screen {
-    @media (max-width: 1023px) {
+    @media (max-width: 1024px) {
         @content;
     }
 }
 @mixin for-sm-screen {
-    @media (max-width:767px) {
+    @media (max-width:768px) {
         @content;
     }
 }

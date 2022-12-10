@@ -11,7 +11,14 @@ type propsTypes = {
 
 const NavLink = ({ name, icon, linkto }: propsTypes) => {
   return (
-    <Link to={linkto} className={styles.navLink}>
+    <Link
+      to={linkto}
+      className={styles.navLink}
+      // style={({ isActive }) => {
+      //   console.log(isActive);
+      //   return { color: "pink" };
+      // }}
+    >
       <FontAwesomeIcon icon={icon} />
       <span>{name}</span>
     </Link>

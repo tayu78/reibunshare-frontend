@@ -5,8 +5,10 @@
     max-width: 80%;
     margin-left: 2rem;
     padding: 2rem;
+    box-sizing: border-box;
     @include for-sm-screen{
-        max-width: 0;
+        max-width: none;
+        width: 100%;
         margin-left: 0;
     }
     
@@ -35,4 +37,7 @@
 .cardFields{
    display: grid;
    grid-template-columns: auto auto;
+   @include for-md-screen{
+     display: block;
+   }
 }
