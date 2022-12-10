@@ -16,11 +16,11 @@ const Navbar = () => {
       </div>
 
       <ul>
-        <NavLink name="Home" icon={faHouse} />
-        <NavLink name="Search" icon={faMagnifyingGlass} />
-        <NavLink name="New Card" icon={faSquarePlus} />
-        <NavLink name="Notification" icon={faBell} />
-        <NavLink name="Your Books" icon={faCircleUser} />
+        <NavLink name="Home" icon={faHouse} linkto="/home" />
+        <NavLink name="Search" icon={faMagnifyingGlass} linkto="/search" />
+        <NavLink name="New Card" icon={faSquarePlus} linkto="/newCard" />
+        <NavLink name="Notifications" icon={faBell} linkto="/notifications" />
+        <NavLink name="Your Books" icon={faCircleUser} linkto="/profile" />
       </ul>
     </div>
   );
