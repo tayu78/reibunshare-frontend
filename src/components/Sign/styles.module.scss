@@ -1,0 +1,34 @@
+@use "../../styles/base" as *;
+
+.sign{
+    padding-top: 5rem;
+    h1{
+        text-align: center;
+    }
+}
+.formBoard{
+    box-sizing: border-box; //TODO:なんでbodyのやつ効かないか調査
+    background-color: #676767;
+    width: 400px;
+    max-width: 95%;
+    margin: 5rem auto;
+    border-radius: 5px;
+    padding: 3rem 4rem;
+    text-align: center;
+}
+.formContent{
+    input {
+       box-sizing: border-box; //TODO:なんでbodyのやつ効かないか調査
+       width: 100%;
+       display: block;
+       margin: 1rem auto;
+       padding: 1rem;
+    }
+    button {
+        width: 100%;
+        background-color: #535353;
+        color: #fff;
+        padding: .5rem;
+    }
+
+}
