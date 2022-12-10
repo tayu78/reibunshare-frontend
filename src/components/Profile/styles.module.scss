@@ -1,0 +1,73 @@
+@use "../../styles/base" as *;
+
+.profile{
+   
+    .buttonWrappper{
+        text-align: right;
+        padding-right: 4.5rem;
+        @include for-sm-screen{
+            text-align: center;
+            padding-right: 0
+        }
+    }
+
+
+    button{
+        width: 50%;
+        border-radius: 10px;
+        margin-top: 1rem;
+        padding: .5rem;
+        cursor: pointer;
+        @include for-sm-screen{
+            width: 100%;
+        }
+    }
+    
+}
+
+
+.avatarWrapper{
+    width: 175px;
+    height: 175px;
+    @include for-sm-screen{
+       width: 60px;
+       height: 60px;
+    }
+}
+
+
+.profileHeader{
+    display: flex;
+    gap: 5rem;
+    @include for-sm-screen{
+       gap: 2rem;
+    }
+}
+
+.userInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.accountName{
+    margin-top: 2rem;
+    font-size: 1.8rem;
+    @include for-sm-screen{
+        margin-top: 0;
+        position: fixed;
+        top: 25px;
+        left: 25px;
+        font-size: 1.5rem;
+    }
+}
+
+.userName{
+    font-size: 1.5rem;
+}
+
+.follow{
+    display: flex;
+    gap: 1rem;
+}
+

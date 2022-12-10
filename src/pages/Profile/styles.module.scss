@@ -1,0 +1,23 @@
+@use "../../styles/base" as * ;
+
+$MARGIN_LEFT: 3rem;
+.profilePage{
+    margin: 5rem 0 0 $MARGIN_LEFT;
+    width: 600px;
+    max-width: calc(95% - $MARGIN_LEFT);
+    @include for-sm-screen{
+        margin: 7rem auto 0 auto;
+    }
+}
+
+.profileWrapper{
+    margin-bottom: 5rem;
+    @include for-sm-screen{
+        margin-top: 6rem;
+    }
+}
+
+.bookWrapper{
+    width: 100%;
+    justify-content: center;
+}

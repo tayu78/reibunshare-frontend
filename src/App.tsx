@@ -5,6 +5,7 @@ import Landing from "./pages/Landing";
 import Home from "./pages/Home";
 import Search from "./components/Search";
 import Notifications from "./components/Notifications";
+import ProfilePage from "./pages/Profile";
 import Sign from "./components/Sign";
 
 function App() {
@@ -18,9 +19,10 @@ function App() {
         </Route>
 
         <Route element={<ProtectedRoutes user={"hoge"} />}>
+          <Route path="/home" element={<Home />} />
           <Route path="/search" element={<Search />} />
           <Route path="/notifications" element={<Notifications />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Route>
       </Routes>
     </BrowserRouter>
