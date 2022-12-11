@@ -1,0 +1,27 @@
+@use "../../styles/base" as *;
+
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(204 204 204 / 50%);
+}
+
+
+.modalContent{
+    background-color: $BLACK_PRIMARY;
+    min-width: 500px;
+    min-height: 500px;
+    border-radius: 5px;
+}
+
+.modalCloseBtn{
+    text-align: right;
+    padding-right: 2rem;
+    cursor: pointer;
+}
