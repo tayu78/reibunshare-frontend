@@ -4,6 +4,7 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import styles from "./styles.module.scss";
 import useModal from "../../../hooks/useModal";
 import NewCard from "../../Card/NewCard";
+
 type propsTypes = {
   name: string;
   linkto: string;
