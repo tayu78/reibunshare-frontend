@@ -1,11 +1,11 @@
 import { Outlet, Navigate } from "react-router-dom";
-import { User } from "../../types/user";
+import { IUser } from "../../types/user";
 import Navbar from "../../components/Navbar";
 import Avatar from "../../components/Avatar";
 import styles from "./styles.module.scss";
 
 type Props = {
-  user: User;
+  user: IUser;
 };
 
 const ProtectedRoutes = ({ user }: Props) => {
