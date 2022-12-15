@@ -14,6 +14,7 @@ type Props = {
 const TagsField = ({ dispatch, tags }: Props) => {
   const [tag, setTag] = useState("");
   const addTag = () => {
+    if (!tag) return;
     dispatch(setTagsAction(tag));
     setTag("");
   };

@@ -24,6 +24,7 @@
    padding: 1.5rem 0;
     max-height: 80%;
     overflow-y: scroll;
+    box-sizing: border-box;
     @include for-sm-screen{
       min-width: initial;
       min-height: 100vh;
