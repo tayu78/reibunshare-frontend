@@ -15,7 +15,7 @@ const Navbar = () => {
         <Logo />
       </div>
 
-      <ul>
+      <ul className={styles.ul}>
         <NavLink name="Home" icon={faHouse} linkto="/home" />
         <NavLink name="Search" icon={faMagnifyingGlass} linkto="/search" />
         <NavLink name="New Card" icon={faSquarePlus} linkto="/newCard" />

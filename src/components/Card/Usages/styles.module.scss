@@ -1,5 +1,30 @@
-.left{
-
+@use "../../../styles/base" as *;
+.usages{
+    background: $BLACK_SECONDARY;
+    width: 90%;
+    padding: 1rem;
+    box-sizing: border-box;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+.usageSentence{
+    box-sizing: border-box;
+    width: 70%;
+    background: #313131;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: .5rem;
+    
 }
 
-.right
+.left{
+   align-self: flex-start;
+}
+
+.right{
+    align-self: flex-end;
+}

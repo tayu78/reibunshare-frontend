@@ -1,0 +1,25 @@
+@use "../../../styles/base" as * ;
+
+.cardContent{
+    width: 500px;
+    box-sizing: border-box;
+    padding: 1.5rem;
+}
+
+//absolute to modal content
+.shareBtn{
+    text-align: right;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    color: $GREEN;
+    cursor: pointer;
+    padding-right: 3rem;
+}
+
+.fieldWrapper{
+    margin-bottom: 1rem;
+}
+
+.title{
+    padding-left: 2rem; 
+}

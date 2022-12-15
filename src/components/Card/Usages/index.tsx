@@ -8,10 +8,18 @@ type Props = {
 
 const Usages = ({ usages }: Props) => {
   return (
-    <ul>
-      {usages.map(({ speaker, message }) => {
-        const className = speaker === SPEAKER_A ? styles.left : styles.right;
-        return <li className={className}>{message}</li>;
+    <ul className={styles.usages}>
+      {usages.map(({ speaker, sentence }, index) => {
+        return (
+          <li
+            key={index}
+            className={`  ${styles.usageSentence} ${
+              speaker === SPEAKER_A ? styles.left : styles.right
+            }`}
+          >
+            {sentence}
+          </li>
+        );
       })}
     </ul>
   );
