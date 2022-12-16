@@ -1,25 +1,19 @@
 import axios from "axios";
-
-enum RequestMethod {
-  GET = "get",
-  POST = "post",
-  PUT = "put",
-  DELETE = "delete",
-}
-interface AxiosOption {
-  method: RequestMethod;
-  url: string;
-  data: any;
-}
+import { AxiosOption } from "../types/index.d";
 
 const sendAxiosRequest = async (options: AxiosOption) => {
   try {
     const { data } = await axios(options);
     return { data, responseType: "success" };
-  } catch (err) {
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      return {
+        data: { message: error.response?.data.message },
+        resultType: "error",
+      };
+    }
     return {
-      //   data: { message: err.response.data.message },
-      data: { err },
+      data: { message: "Unexpect error occurred when exexuted axios. ", error },
       resultType: "error",
     };
   }

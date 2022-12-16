@@ -1,8 +1,6 @@
-import { useEffect, useReducer, ChangeEvent } from "react";
+import { useEffect, useReducer, ChangeEvent, FormEvent } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styles from "./styles.module.scss";
-
-import { SignActionType, SIGN_ACTIONS } from "../../types/auth.d";
 import signReducer from "./reducer";
 import {
   setAccountNameAction,
@@ -11,7 +9,9 @@ import {
   setPasswordAction,
   setUsernameAction,
 } from "./reducer/actions";
+import { signUp, login } from "../../services/authServices";
 import InputField from "../../components/Form/InputField";
+import { IUser } from "../../types/user";
 
 type Props = {
   isLogin?: boolean;
@@ -28,9 +28,22 @@ const Sign = ({ isLogin }: Props) => {
 
   const [signState, dispatch] = useReducer(signReducer, initialState);
 
-  useEffect(() => {
-    console.log(signState);
-  }, [signState]);
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    const { accountName, email, password, username } = signState;
+    e.preventDefault();
+    if (isLogin) {
+      const { data, responseType } = await login({ email, password } as IUser);
+      console.log("login: ", data);
+    } else {
+      const { data, responseType } = await signUp({
+        accountName,
+        email,
+        password,
+        username,
+      });
+      console.log("signup: ", data);
+    }
+  };
 
   const navigate = useNavigate();
 
@@ -40,7 +53,7 @@ const Sign = ({ isLogin }: Props) => {
         Welcome {isLogin && "back"} to
         <span className={styles.fontGreen}>ReibunShare</span> !!!
       </h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className={styles.formBoard}>
           <div className={styles.formContent}>
             <p>{isLogin ? "LogIn" : "SignUp"}</p>
@@ -112,13 +125,7 @@ const Sign = ({ isLogin }: Props) => {
                 />
               </>
             )}
-            <button
-              onClick={() => {
-                navigate("/home");
-              }}
-            >
-              {isLogin ? "LogIn" : "SignUp"}
-            </button>
+            <button type="submit">{isLogin ? "LogIn" : "SignUp"}</button>
           </div>
           {isLogin ? (
             <p>
