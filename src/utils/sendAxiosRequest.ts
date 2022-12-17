@@ -4,7 +4,7 @@ import { AxiosOption } from "../types/index.d";
 const sendAxiosRequest = async (options: AxiosOption) => {
   try {
     const { data } = await axios(options);
-    return { data, responseType: "success" };
+    return { data, resultType: "success" };
   } catch (error) {
     if (axios.isAxiosError(error)) {
       return {

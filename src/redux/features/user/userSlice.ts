@@ -22,12 +22,15 @@ export const registerUser = createAsyncThunk<
     { rejectWithValue }
   ) => {
     try {
-      const { data, responseType } = await signUp({
+      const { data, resultType } = await signUp({
         email,
         username,
         accountName,
         password,
       });
+      if (resultType === "error") {
+        throw new Error(data.message);
+      }
 
       return data;
     } catch (err) {
@@ -41,8 +44,11 @@ export const userLogin = createAsyncThunk(
   "user/login",
   async ({ email, password }: IUser, { rejectWithValue }) => {
     try {
-      const { data, responseType } = await login({ email, password } as IUser);
+      const { data, resultType } = await login({ email, password } as IUser);
       console.log("login data: ", data);
+      if (resultType === "error") {
+        throw new Error(data.message);
+      }
       return data;
     } catch (err) {
       //TODO: more detailed error handling

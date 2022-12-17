@@ -1,8 +1,12 @@
 import LogoImg from "../../assets/images/logo.svg";
 import styles from "./styles.module.scss";
 
-const Avatar = () => {
-  return <img src={LogoImg} className={styles.avatar} />;
+type Props = {
+  url: string | undefined;
+};
+
+const Avatar = ({ url }: Props) => {
+  return <img src={url ? url : LogoImg} className={styles.avatar} />;
 };
 
 export default Avatar;
