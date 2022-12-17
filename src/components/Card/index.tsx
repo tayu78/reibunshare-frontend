@@ -24,7 +24,7 @@ const Card = () => {
     <div className={styles.card}>
       <div className={styles.userInfo}>
         <div className={styles.avatarWrapper}>
-          <Avatar />
+          <Avatar url="" />
         </div>
         <p>Yuya Satake</p>
       </div>
