@@ -1,16 +1,14 @@
 import { Outlet, Navigate } from "react-router-dom";
-import { IUser } from "../../types/user";
 import Navbar from "../../components/Navbar";
 import Avatar from "../../components/Avatar";
 import styles from "./styles.module.scss";
+import useAppSelector from "../../hooks/useAppSelector";
 
-type Props = {
-  user: IUser;
-};
+const ProtectedRoutes = () => {
+  const { isAuthenticated } = useAppSelector((store) => store.user);
 
-const ProtectedRoutes = ({ user }: Props) => {
-  if (!user) {
-    return <Navigate to={"/signIn"} />;
+  if (!isAuthenticated) {
+    return <Navigate to={"/signup"} />;
   }
   return (
     <div className={styles.flexContainer}>

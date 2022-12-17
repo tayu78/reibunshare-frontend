@@ -2,6 +2,8 @@ import { useEffect, useReducer, ChangeEvent, FormEvent } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styles from "./styles.module.scss";
 import signReducer from "./reducer";
+import useAppDispatch from "../../hooks/useAppDispatch";
+import useAppSelector from "../../hooks/useAppSelector";
 import {
   setAccountNameAction,
   setConfirmPasswordAction,
@@ -9,9 +11,10 @@ import {
   setPasswordAction,
   setUsernameAction,
 } from "./reducer/actions";
-import { signUp, login } from "../../services/authServices";
+// import { signUp, login } from "../../services/authServices";
 import InputField from "../../components/Form/InputField";
 import { IUser } from "../../types/user";
+import { registerUser, userLogin } from "../../redux/features/user/userSlice";
 
 type Props = {
   isLogin?: boolean;
@@ -26,26 +29,33 @@ const Sign = ({ isLogin }: Props) => {
     confirmPassword: "",
   };
 
+  const { isLoading, error, isAuthenticated } = useAppSelector(
+    (store) => store.user
+  );
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/home");
+    }
+  }, [isAuthenticated]);
+  const appDispatch = useAppDispatch();
+
   const [signState, dispatch] = useReducer(signReducer, initialState);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     const { accountName, email, password, username } = signState;
     e.preventDefault();
     if (isLogin) {
-      const { data, responseType } = await login({ email, password } as IUser);
-      console.log("login: ", data);
+      appDispatch(userLogin({ email, password } as IUser));
     } else {
-      const { data, responseType } = await signUp({
-        accountName,
-        email,
-        password,
-        username,
-      });
-      console.log("signup: ", data);
+      if (signState.password !== signState.confirmPassword) {
+        alert("password does not match");
+        return;
+      }
+      appDispatch(registerUser({ accountName, email, password, username }));
     }
   };
-
-  const navigate = useNavigate();
 
   return (
     <div className={styles.sign}>
