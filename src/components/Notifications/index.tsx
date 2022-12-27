@@ -8,7 +8,7 @@ const Notifications = () => {
       <div className={styles.notification}>
         <div className={styles.head}>
           <div className={styles.avatarWrapper}>
-            <Avatar />
+            <Avatar url={""} />
           </div>
           <p>@yuya just followed you</p>
         </div>
