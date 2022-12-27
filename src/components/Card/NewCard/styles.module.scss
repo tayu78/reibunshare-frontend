@@ -9,11 +9,15 @@
 
 //absolute to modal content
 .shareBtn{
-    text-align: right;
-    bottom: 1.5rem;
-    right: 1.5rem;
+   background: transparent;
     color: $GREEN;
     cursor: pointer;
+}
+.shareBtnContainer{
+     text-align: right;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    
     padding-right: 3rem;
 }
 

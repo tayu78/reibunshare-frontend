@@ -1,4 +1,4 @@
-import { useReducer, ChangeEvent } from "react";
+import { useReducer, ChangeEvent, FormEvent } from "react";
 import styles from "./styles.module.scss";
 import cardReducer from "../reducer";
 import {
@@ -9,6 +9,7 @@ import {
 import InputField from "../../Form/InputField";
 import UsageInput from "../Usages/UsageInput";
 import TagsField from "../Tags/TagsField";
+import { makeCard } from "../../../services/cardServices";
 
 const NewCard = () => {
   const initialState = {
@@ -20,8 +21,24 @@ const NewCard = () => {
   };
 
   const [cardState, dispatch] = useReducer(cardReducer, initialState);
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const { phrase, usages, description, meaning, tags } = cardState;
+    try {
+      await makeCard({
+        phrase,
+        usages,
+        description,
+        meaning,
+        tags,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       <h1 className={styles.title}>New Card</h1>
       <div className={styles.cardContent}>
         <div className={styles.fieldWrapper}>
@@ -66,8 +83,10 @@ const NewCard = () => {
         </div>
       </div>
 
-      <div className={styles.shareBtn}>Share</div>
-    </div>
+      <div className={styles.shareBtnContainer}>
+        <button className={styles.shareBtn}>Share</button>
+      </div>
+    </form>
   );
 };
 
