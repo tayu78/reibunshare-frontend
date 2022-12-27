@@ -11,11 +11,7 @@ const initialState = {
   success: false,
 };
 
-export const registerUser = createAsyncThunk<
-  any,
-  IUser,
-  { rejectValue: string }
->(
+export const registerUser = createAsyncThunk(
   "user/register",
   async (
     { email, username, accountName, password }: IUser,
@@ -72,7 +68,7 @@ export const userSlice = createSlice({
       console.log("payload", payload);
       state.userInfo = payload.user;
       state.isAuthenticated = true;
-      //TODO: setToken here
+      state.userToken = payload.token;
     });
     builder.addCase(registerUser.rejected, (state, { payload }) => {
       state.isLoading = false;
@@ -89,7 +85,7 @@ export const userSlice = createSlice({
       console.log("payload", payload);
       state.userInfo = payload.user;
       state.isAuthenticated = true;
-      //TODO: setToken here
+      state.userToken = payload.token;
     });
     builder.addCase(userLogin.rejected, (state, { payload }) => {
       state.isLoading = false;

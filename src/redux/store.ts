@@ -1,6 +1,5 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
-import thunk from "redux-thunk";
 import storage from "redux-persist/lib/storage";
 import userReducer from "./features/user/userSlice";
 
@@ -17,7 +16,8 @@ const persistedReducer = persistReducer(persistConfig, reducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
-  middleware: [thunk],
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
 });
 
 export const persister = persistStore(store);
