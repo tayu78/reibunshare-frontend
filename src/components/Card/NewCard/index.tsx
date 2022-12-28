@@ -11,7 +11,11 @@ import UsageInput from "../Usages/UsageInput";
 import TagsField from "../Tags/TagsField";
 import { makeCard } from "../../../services/cardServices";
 
-const NewCard = () => {
+type Props = {
+  closeModal: (e: FormEvent<HTMLFormElement>, isFormSubmit: boolean) => void;
+};
+
+const NewCard = ({ closeModal }: Props) => {
   const initialState = {
     phrase: "",
     usages: [],
@@ -33,6 +37,7 @@ const NewCard = () => {
         meaning,
         tags,
       });
+      closeModal(e, true);
     } catch (err) {
       console.log(err);
     }

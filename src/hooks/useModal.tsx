@@ -1,4 +1,4 @@
-import { useState, useCallback, ReactNode, MouseEvent } from "react";
+import { useState, useCallback, ReactNode, MouseEvent, FormEvent } from "react";
 import ModalComponent from "../components/Modal";
 
 type ModalProps = {
@@ -12,10 +12,17 @@ const useModal = () => {
     setIsOpen(true);
   }, []);
 
-  const closeModal = useCallback((e: MouseEvent<HTMLElement>) => {
-    if (e.currentTarget !== e.target) return;
-    setIsOpen(false);
-  }, []);
+  const closeModal = useCallback(
+    (
+      e: MouseEvent<HTMLElement> | FormEvent<HTMLFormElement>,
+      isFormSubmit?: boolean
+    ) => {
+      if (e.currentTarget === e.target || isFormSubmit) {
+        setIsOpen(false);
+      }
+    },
+    []
+  );
 
   const Modal = ({ children }: ModalProps) => {
     return isOpen ? (

@@ -12,13 +12,13 @@ type propsTypes = {
 };
 
 const NavLink = ({ name, icon, linkto }: propsTypes) => {
-  const { Modal, openModal } = useModal();
+  const { Modal, openModal, closeModal } = useModal();
   return (
     <>
       {name === "New Card" ? (
         <>
           <Modal>
-            <NewCard />
+            <NewCard closeModal={closeModal} />
           </Modal>
           <div onClick={openModal} className={styles.navLink}>
             <FontAwesomeIcon icon={icon} />
