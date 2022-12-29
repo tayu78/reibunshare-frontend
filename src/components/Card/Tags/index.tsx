@@ -1,15 +1,16 @@
 import styles from "./styles.module.scss";
 type Props = {
-  tags: string[];
+  tags: { name: string }[];
 };
 
 const Tags = ({ tags }: Props) => {
   return (
     <ul className={styles.tags}>
       {tags.map((tag, index) => {
+        console.log(tag);
         return (
           <li key={index} className={styles.tag}>
-            {tag}
+            {tag.name}
           </li>
         );
       })}

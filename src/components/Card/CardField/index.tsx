@@ -10,10 +10,7 @@ const CardField = ({ label, children }: Props) => {
   return (
     <div>
       <p className={styles.label}>{label}</p>
-      <div className={styles.cardField}>
-        Take it easy.
-        {children}
-      </div>
+      <div className={styles.cardField}>{children}</div>
     </div>
   );
 };

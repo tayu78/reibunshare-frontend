@@ -7,5 +7,5 @@ export enum RequestMethod {
 export interface AxiosOption {
   method: RequestMethod;
   url: string;
-  data: any;
+  data?: any;
 }

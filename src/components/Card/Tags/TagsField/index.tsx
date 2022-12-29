@@ -8,7 +8,7 @@ import AddIcon from "@mui/icons-material/Add";
 
 type Props = {
   dispatch: (action: cardActionType) => void;
-  tags: string[];
+  tags: { name: string }[];
 };
 
 const TagsField = ({ dispatch, tags }: Props) => {
@@ -24,7 +24,7 @@ const TagsField = ({ dispatch, tags }: Props) => {
       <div className={styles.inputsContainer}>
         <div className={styles.inputWrapper}>
           <InputField
-            placeholder="entar tags..."
+            placeholder="enter tags..."
             handleChange={(
               e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
             ) => setTag(e.target.value)}
