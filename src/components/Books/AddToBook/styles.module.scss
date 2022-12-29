@@ -1,0 +1,33 @@
+@use "../../../styles/base" as * ;
+.addToBook{
+    padding: 1rem 2rem;
+    h1{
+        margin-bottom: 1rem;
+    }
+    & > p{
+        margin-bottom: 2rem;
+    }
+}
+
+.addNewBook{
+    color: $GREEN;
+    margin-bottom: 1rem;
+}
+
+.willAddNewBook{
+    p{
+        margin-bottom: .8rem;
+    }
+}
+.willAddNewBookField{
+    margin-top: 1.5rem;
+}
+
+.addBookBtnContainer{
+    text-align: right;
+    margin-top: 1rem;
+    button{
+        background-color: transparent;
+        color: $GREEN;
+    }
+}
