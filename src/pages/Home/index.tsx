@@ -23,7 +23,6 @@ const Home = () => {
       {isLoading && "Loading..."}
 
       {cards.map((card) => {
-        console.log("card: ", card);
         return (
           <Card
             key={card._id}

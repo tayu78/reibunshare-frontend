@@ -11,7 +11,6 @@ import {
   setPasswordAction,
   setUsernameAction,
 } from "./reducer/actions";
-// import { signUp, login } from "../../services/authServices";
 import InputField from "../../components/Form/InputField";
 import { IUser } from "../../types/user";
 import { registerUser, userLogin } from "../../redux/features/user/userSlice";

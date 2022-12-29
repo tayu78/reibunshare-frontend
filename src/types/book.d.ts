@@ -1,6 +1,10 @@
+import { ICard } from "./card";
+
 export interface IBook {
-  bookName: string;
-  bookDescription: string;
+  _id?: string;
+  name: string;
+  description: string;
+  cards?: ICard[];
 }
 
 export enum BOOK_ACTIONS {
@@ -11,13 +15,13 @@ export enum BOOK_ACTIONS {
 export interface SetBookName {
   type: BOOK_ACTIONS.SET_BOOK_NAME;
   payload: {
-    bookName: string;
+    name: string;
   };
 }
 export interface SetBookDescription {
   type: BOOK_ACTIONS.SET_BOOK_DESCRIPTION;
   payload: {
-    bookDescription: string;
+    description: string;
   };
 }
 export type bookActionType = SetBookName | SetBookDescription;

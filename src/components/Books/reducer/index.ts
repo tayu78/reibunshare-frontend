@@ -5,12 +5,12 @@ const bookReducer = (state: IBook, action: bookActionType) => {
     case BOOK_ACTIONS.SET_BOOK_NAME:
       return {
         ...state,
-        bookName: action.payload.bookName,
+        name: action.payload.name,
       };
     case BOOK_ACTIONS.SET_BOOK_DESCRIPTION:
       return {
         ...state,
-        bookDescription: action.payload.bookDescription,
+        description: action.payload.description,
       };
     default:
       return state;

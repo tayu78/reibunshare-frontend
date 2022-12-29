@@ -11,7 +11,7 @@ export const setBookNameAction = (
   return {
     type: BOOK_ACTIONS.SET_BOOK_NAME,
     payload: {
-      bookName: e.target.value,
+      name: e.target.value,
     },
   };
 };
@@ -22,7 +22,7 @@ export const setBookDescriptionAction = (
   return {
     type: BOOK_ACTIONS.SET_BOOK_DESCRIPTION,
     payload: {
-      bookDescription: e.target.value,
+      description: e.target.value,
     },
   };
 };

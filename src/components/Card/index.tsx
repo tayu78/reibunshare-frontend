@@ -56,7 +56,7 @@ const Card = ({
   return (
     <>
       <Modal>
-        <AddToBook />
+        <AddToBook cardId={cardId} />
       </Modal>
       <div className={styles.card}>
         <div className={styles.userInfo}>

@@ -1,6 +1,6 @@
 import sendAxiosRequest from "../utils/sendAxiosRequest";
 import { RequestMethod } from "../types/index.d";
-import { ICard } from "../types/card";
+import { ICard } from "../types/card.d";
 import { getUserToken } from "../utils/getUserToken";
 
 export const getCards = async () => {
