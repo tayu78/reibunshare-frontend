@@ -10,8 +10,10 @@ import { SMALL_SCREEN } from "../../constants/global";
 import { Usage } from "../../types/card";
 import Usages from "./Usages";
 import Tags from "./Tags";
+import { manageLikes } from "../../services/cardServices";
 
 type Props = {
+  cardId: string;
   phrase: string;
   usages: Usage[];
   description: string;
@@ -20,16 +22,29 @@ type Props = {
   user: { img: string; accountName: string };
 };
 
-const Card = ({ phrase, usages, description, meaning, tags, user }: Props) => {
+const Card = ({
+  cardId,
+  phrase,
+  usages,
+  description,
+  meaning,
+  tags,
+  user,
+}: Props) => {
   const smallScreen = useMediaPredicate(`(max-width: ${SMALL_SCREEN}px)`);
 
   const [showDetail, setShowDetail] = useState(false);
+  const [isLike, setIsLike] = useState(false);
 
   useEffect(() => {
     if (smallScreen) {
       setShowDetail(false);
     }
   }, [smallScreen]);
+
+  useEffect(() => {
+    manageLikes(cardId, isLike);
+  }, [isLike]);
 
   return (
     <div className={styles.card}>
@@ -68,9 +83,18 @@ const Card = ({ phrase, usages, description, meaning, tags, user }: Props) => {
       </div>
 
       <div className={styles.icons}>
-        <FavoriteBorderOutlinedIcon />
-        <ChatBubbleOutlineOutlinedIcon />
-        <BookmarkBorderOutlinedIcon />
+        <div
+          className={`${styles.icon} ${isLike && styles.like}`}
+          onClick={() => setIsLike((prev) => !prev)}
+        >
+          <FavoriteBorderOutlinedIcon />
+        </div>
+        <div className={styles.icon}>
+          <ChatBubbleOutlineOutlinedIcon />
+        </div>
+        <div className={styles.icon}>
+          <BookmarkBorderOutlinedIcon />
+        </div>
       </div>
     </div>
   );

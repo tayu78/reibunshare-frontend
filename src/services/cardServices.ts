@@ -8,7 +8,7 @@ export const getCards = async () => {
     method: RequestMethod.GET,
     url: `${import.meta.env.VITE_SERVER_URL}/api/v1/cards/`,
   };
-  return sendAxiosRequest(options);
+  return await sendAxiosRequest(options);
 };
 
 export const makeCard = async ({
@@ -27,6 +27,21 @@ export const makeCard = async ({
       description,
       meaning,
       tags,
+    },
+    headers: {
+      authorization: `Bearer ${getUserToken()}`,
+    },
+  };
+
+  return await sendAxiosRequest(options);
+};
+
+export const manageLikes = async (cardId: string, isLike: boolean) => {
+  const options = {
+    method: RequestMethod.PUT,
+    url: `${import.meta.env.VITE_SERVER_URL}/api/v1/cards/likes/${cardId}`,
+    params: {
+      isLike,
     },
     headers: {
       authorization: `Bearer ${getUserToken()}`,

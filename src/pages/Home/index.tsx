@@ -29,6 +29,7 @@ const Home = () => {
         return (
           <Card
             key={card._id}
+            cardId={card._id!}
             phrase={card.phrase}
             usages={card.usages}
             description={card.description}

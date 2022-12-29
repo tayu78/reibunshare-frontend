@@ -26,6 +26,14 @@
     gap: 2rem;
     margin-top: 1rem;
 }
+.icon{
+    cursor: pointer;
+}
+.like{
+    svg{
+      fill:$GREEN 
+    }
+}
 
 .avatarWrapper{
     width: 50px;
