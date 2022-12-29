@@ -6,7 +6,7 @@ export interface ICard {
   description: string;
   meaning: string;
   // img: string,
-  // likes:string[],
+  likes?: string[];
   tags: { name: string }[];
   // createdAt: Date,
   // updatedAt: Date

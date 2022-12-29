@@ -5,7 +5,7 @@ import { ICard } from "../../types/card";
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [cards, setCards] = useState<
-    (ICard & { user: { img: string; accountName: string } })[]
+    (ICard & { user: { _id: string; img: string; accountName: string } })[]
   >([]);
 
   useEffect(() => {
@@ -17,8 +17,6 @@ const Home = () => {
       setIsLoading(false);
     });
   }, []);
-
-  useEffect(() => {});
 
   return (
     <>
@@ -36,6 +34,7 @@ const Home = () => {
             meaning={card.meaning}
             tags={card.tags}
             user={card.user}
+            likes={card.likes!}
           />
         );
       })}

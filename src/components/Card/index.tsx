@@ -19,7 +19,8 @@ type Props = {
   description: string;
   meaning: string;
   tags: { name: string }[];
-  user: { img: string; accountName: string };
+  user: { _id: string; img: string; accountName: string };
+  likes: string[];
 };
 
 const Card = ({
@@ -30,11 +31,12 @@ const Card = ({
   meaning,
   tags,
   user,
+  likes,
 }: Props) => {
   const smallScreen = useMediaPredicate(`(max-width: ${SMALL_SCREEN}px)`);
 
   const [showDetail, setShowDetail] = useState(false);
-  const [isLike, setIsLike] = useState(false);
+  const [isLike, setIsLike] = useState(likes.includes(user._id));
 
   useEffect(() => {
     if (smallScreen) {
