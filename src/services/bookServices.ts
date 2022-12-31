@@ -22,3 +22,25 @@ export const newBook = async ({
   };
   return await sendAxiosRequest(options);
 };
+
+export const addToBook = async (
+  bookId: string,
+  cardId: string,
+  isAdding: boolean
+) => {
+  const options = {
+    method: RequestMethod.PUT,
+    url: `${import.meta.env.VITE_SERVER_URL}/api/v1/books/add/${bookId}`,
+    params: {
+      isAdding,
+    },
+    data: {
+      cardId,
+    },
+    headers: {
+      authorization: `Bearer ${getUserToken()}`,
+    },
+  };
+
+  return await sendAxiosRequest(options);
+};

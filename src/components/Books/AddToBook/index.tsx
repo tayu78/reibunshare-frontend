@@ -1,11 +1,11 @@
-import { useState, useReducer, ChangeEvent, useEffect } from "react";
+import { useState, useReducer, ChangeEvent, Fragment } from "react";
 import styles from "./styles.module.scss";
 import bookReducer from "../reducer";
 import {
   setBookNameAction,
   setBookDescriptionAction,
 } from "../reducer/actions";
-import { newBook } from "../../../services/bookServices";
+import { newBook, addToBook } from "../../../services/bookServices";
 import useAppDispatch from "../../../hooks/useAppDispatch";
 import useAppSelector from "../../../hooks/useAppSelector";
 import InputField from "../../Form/InputField";
@@ -27,7 +27,7 @@ const AddToBook = ({ cardId }: Props) => {
   const appDispatch = useAppDispatch();
   const { userInfo } = useAppSelector((store) => store.user);
 
-  const handleAddBook = () => {
+  const handleAddNewBook = () => {
     const { name, description } = bookState;
 
     newBook({ name, description, cardId }).then(() => {
@@ -35,6 +35,15 @@ const AddToBook = ({ cardId }: Props) => {
     });
     setWillAddNewBook(false);
   };
+
+  const handleAddToBook = async (
+    bookId: string,
+    e: ChangeEvent<HTMLInputElement>
+  ) => {
+    const { data } = await addToBook(bookId, cardId ,e.target.checked);
+    console.log("data: ", data);
+  };
+
   return (
     <div className={styles.addToBook}>
       <h1>Add to Book</h1>
@@ -44,10 +53,23 @@ const AddToBook = ({ cardId }: Props) => {
       >
         + new book
       </div>
-      <p>Which book do you want to add to ?</p>
+      <legend>Which book do you want to add to ?</legend>
+
       <ul>
         {userInfo.userBooks.map((book) => {
-          return <li key={book._id}>{book.name}</li>;
+          return (
+            <Fragment key={book._id}>
+              <div>
+                <input
+                  type="checkbox"
+                  id={book.name}
+                  name={book.name}
+                  onChange={(e) => handleAddToBook(book._id as string, e)}
+                />
+                <label htmlFor={book.name}>{book.name}</label>
+              </div>
+            </Fragment>
+          );
         })}
       </ul>
       {willAddNewBook && (
@@ -78,7 +100,7 @@ const AddToBook = ({ cardId }: Props) => {
             ></InputField>
           </div>
           <div className={styles.addBookBtnContainer}>
-            <button onClick={handleAddBook}>add book</button>
+            <button onClick={handleAddNewBook}>add book</button>
           </div>
         </div>
       )}
