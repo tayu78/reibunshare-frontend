@@ -10,6 +10,7 @@ import useAppDispatch from "../../../hooks/useAppDispatch";
 import useAppSelector from "../../../hooks/useAppSelector";
 import InputField from "../../Form/InputField";
 import { getUserInformation } from "../../../redux/features/user/userSlice";
+import CheckboxField from "../CheckboxField";
 
 type Props = {
   cardId: string;
@@ -36,14 +37,6 @@ const AddToBook = ({ cardId }: Props) => {
     setWillAddNewBook(false);
   };
 
-  const handleAddToBook = async (
-    bookId: string,
-    e: ChangeEvent<HTMLInputElement>
-  ) => {
-    const { data } = await addToBook(bookId, cardId ,e.target.checked);
-    console.log("data: ", data);
-  };
-
   return (
     <div className={styles.addToBook}>
       <h1>Add to Book</h1>
@@ -56,20 +49,8 @@ const AddToBook = ({ cardId }: Props) => {
       <legend>Which book do you want to add to ?</legend>
 
       <ul>
-        {userInfo.userBooks.map((book) => {
-          return (
-            <Fragment key={book._id}>
-              <div>
-                <input
-                  type="checkbox"
-                  id={book.name}
-                  name={book.name}
-                  onChange={(e) => handleAddToBook(book._id as string, e)}
-                />
-                <label htmlFor={book.name}>{book.name}</label>
-              </div>
-            </Fragment>
-          );
+        {userInfo.userBooks?.map((book) => {
+          return <CheckboxField key={book._id} cardId={cardId} book={book} />;
         })}
       </ul>
       {willAddNewBook && (

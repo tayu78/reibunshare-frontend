@@ -4,7 +4,7 @@ export interface IBook {
   _id?: string;
   name: string;
   description: string;
-  cards?: ICard[];
+  cards?: string[];
 }
 
 export enum BOOK_ACTIONS {
