@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import Card from "../../components/Card";
 import { getCards } from "../../services/cardServices";
-import { ICard } from "../../types/card";
+import { CardWithUser } from "../../types/card";
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [cards, setCards] = useState<
-    (ICard & { user: { _id: string; img: string; accountName: string } })[]
-  >([]);
+  const [cards, setCards] = useState<CardWithUser[]>([]);
 
   useEffect(() => {
     setIsLoading(true);

@@ -1,16 +1,1 @@
-@use "../../../styles/base" as *;
-
-.book {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 3rem;
-    padding: 1.5rem;
-    border: 1px solid $BLACK_SECONDARY;
-   
-}
-
-.bookTitle{
-    font-size: 1.5rem;
-}
-
+@use "../../../styles/base";

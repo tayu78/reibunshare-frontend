@@ -12,6 +12,10 @@ export interface ICard {
   // updatedAt: Date
 }
 
+export type CardWithUser = ICard & {
+  user: { _id: string; img: string; accountName: string };
+};
+
 export interface Usage {
   speaker: string;
   sentence: string;

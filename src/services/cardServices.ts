@@ -50,3 +50,16 @@ export const manageLikes = async (cardId: string, isLike: boolean) => {
 
   return await sendAxiosRequest(options);
 };
+
+export const getBookCards = async (cardIds: string[]) => {
+  const options = {
+    method: RequestMethod.POST,
+    url: `${import.meta.env.VITE_SERVER_URL}/api/v1/cards/getBookCards`,
+    data: { cardIds },
+    headers: {
+      authorization: `Bearer ${getUserToken()}`,
+    },
+  };
+
+  return await sendAxiosRequest(options);
+};

@@ -13,7 +13,8 @@ import { SMALL_SCREEN } from "../../constants/global";
 import { Usage } from "../../types/card";
 import { manageLikes } from "../../services/cardServices";
 import useModal from "../../hooks/useModal";
-import { Add } from "@mui/icons-material";
+import useAppDispatch from "../../hooks/useAppDispatch";
+import { getUserInformation } from "../../redux/features/user/userSlice";
 
 type Props = {
   cardId: string;
@@ -41,7 +42,8 @@ const Card = ({
   const [showDetail, setShowDetail] = useState(false);
   const [isLike, setIsLike] = useState(likes.includes(user._id));
 
-  const { Modal, openModal, closeModal } = useModal();
+  const { Modal, openModal, isOpen } = useModal();
+  const appDispatch = useAppDispatch();
 
   useEffect(() => {
     if (smallScreen) {
@@ -52,6 +54,11 @@ const Card = ({
   useEffect(() => {
     manageLikes(cardId, isLike);
   }, [isLike]);
+
+  useEffect(() => {
+    if (isOpen) return;
+    appDispatch(getUserInformation());
+  }, [isOpen]);
 
   return (
     <>
