@@ -20,7 +20,7 @@ const Navbar = () => {
         <NavLink name="Search" icon={faMagnifyingGlass} linkto="/search" />
         <NavLink name="New Card" icon={faSquarePlus} linkto="/newCard" />
         <NavLink name="Notifications" icon={faBell} linkto="/notifications" />
-        <NavLink name="Your Books" icon={faCircleUser} linkto="/profile" />
+        <NavLink name="Your Books" icon={faCircleUser} linkto="/profile/me" />
       </ul>
     </div>
   );

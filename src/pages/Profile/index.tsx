@@ -1,15 +1,20 @@
 import styles from "./styles.module.scss";
-import Profile from "../../components/Profile";
+import MyProfile from "../../components/Profile/MyProfile";
+import TheirProfile from "../../components/Profile/TheirProfile";
 import Books from "../../components/Books";
 
-const ProfilePage = () => {
+type Props = {
+  isMine?: boolean;
+};
+
+const ProfilePage = ({ isMine }: Props) => {
   return (
     <div className={styles.profilePage}>
       <div className={styles.profileWrapper}>
-        <Profile />
+        {isMine ? <MyProfile /> : <TheirProfile />}
       </div>
       <div className={styles.bookWrapper}>
-        <Books />
+        <Books isMine={isMine} />
       </div>
     </div>
   );

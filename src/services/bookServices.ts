@@ -44,3 +44,21 @@ export const addToBook = async (
 
   return await sendAxiosRequest(options);
 };
+
+export const getUserBooks = async (userId: string) => {
+  const options = {
+    method: RequestMethod.GET,
+    url: `${
+      import.meta.env.VITE_SERVER_URL
+    }/api/v1/books/getUserBooks/${userId}`,
+  };
+  return await sendAxiosRequest(options);
+};
+
+export const getBook = async (bookId: string) => {
+  const options = {
+    method: RequestMethod.GET,
+    url: `${import.meta.env.VITE_SERVER_URL}/api/v1/books/${bookId}`,
+  };
+  return await sendAxiosRequest(options);
+};

@@ -12,3 +12,11 @@ export const getUserInfo = async () => {
   };
   return await sendAxiosRequest(options);
 };
+
+export const getOtherUserInfo = async (userId: string) => {
+  const options = {
+    method: RequestMethod.GET,
+    url: `${import.meta.env.VITE_SERVER_URL}/api/v1/users/them/${userId}`,
+  };
+  return await sendAxiosRequest(options);
+};

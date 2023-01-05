@@ -23,8 +23,9 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/search" element={<Search />} />
           <Route path="/notifications" element={<Notifications />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/profile/book/:bookId" element={<UserBook />} />
+          <Route path="/profile/me" element={<ProfilePage isMine />} />
+          <Route path="/profile/:userId" element={<ProfilePage />} />
+          <Route path="/book/:bookId" element={<UserBook />} />
         </Route>
       </Routes>
     </BrowserRouter>

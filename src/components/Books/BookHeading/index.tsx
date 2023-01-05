@@ -12,7 +12,7 @@ const BookHeading = ({ bookId, name, description }: Props) => {
   return (
     <li
       className={styles.bookHeading}
-      onClick={() => navigate(`book/${bookId}`)}
+      onClick={() => navigate(`/book/${bookId}`)}
     >
       <p className={styles.bookTitle}>{name}</p>
       <p className={styles.bookDescription}>{description}</p>

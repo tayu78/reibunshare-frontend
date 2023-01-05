@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useMediaPredicate } from "react-media-hook";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
@@ -14,6 +15,7 @@ import { Usage } from "../../types/card";
 import { manageLikes } from "../../services/cardServices";
 import useModal from "../../hooks/useModal";
 import useAppDispatch from "../../hooks/useAppDispatch";
+import useAppSelector from "../../hooks/useAppSelector";
 import { getUserInformation } from "../../redux/features/user/userSlice";
 
 type Props = {
@@ -37,6 +39,7 @@ const Card = ({
   user,
   likes,
 }: Props) => {
+  const { userInfo } = useAppSelector((store) => store.user);
   const smallScreen = useMediaPredicate(`(max-width: ${SMALL_SCREEN}px)`);
 
   const [showDetail, setShowDetail] = useState(false);
@@ -44,6 +47,13 @@ const Card = ({
 
   const { Modal, openModal, isOpen } = useModal();
   const appDispatch = useAppDispatch();
+
+  const navigate = useNavigate();
+
+  const handleMoveToProfile = () => {
+    if (user._id === userInfo._id) return navigate("/profile/me");
+    navigate(`/profile/${user._id}`);
+  };
 
   useEffect(() => {
     if (smallScreen) {
@@ -66,7 +76,7 @@ const Card = ({
         <AddToBook cardId={cardId} />
       </Modal>
       <div className={styles.card}>
-        <div className={styles.userInfo}>
+        <div className={styles.userInfo} onClick={handleMoveToProfile}>
           <div className={styles.avatarWrapper}>
             <Avatar url={user.img} />
           </div>
