@@ -20,3 +20,19 @@ export const getOtherUserInfo = async (userId: string) => {
   };
   return await sendAxiosRequest(options);
 };
+
+export const manageFollowing = async (userId: string, isFollowing: boolean) => {
+  const options = {
+    method: RequestMethod.PUT,
+    url: `${
+      import.meta.env.VITE_SERVER_URL
+    }/api/v1/users/${userId}/manageFollowing`,
+    params: {
+      isFollowing,
+    },
+    headers: {
+      authorization: `Bearer ${getUserToken()}`,
+    },
+  };
+  return await sendAxiosRequest(options);
+};

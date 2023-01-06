@@ -28,10 +28,6 @@ const MyBooks = ({ isMine }: Props) => {
     });
   }, []);
 
-  useEffect(() => {
-    console.log("therBOok", theirBooks);
-  }, [theirBooks]);
-
   return (
     <>
       <div className={styles.head}>
@@ -53,10 +49,10 @@ const MyBooks = ({ isMine }: Props) => {
       {isLoading && "Loading..."}
       {
         <>
-          {!isMine && theirBooks.length === 0 ? (
+          {!isMine && theirBooks?.length === 0 ? (
             <p>User does not have books yet</p>
           ) : (
-            theirBooks.map(({ _id, name, description }) => {
+            theirBooks?.map(({ _id, name, description }) => {
               return (
                 <div key={_id}>
                   <BookHeading
