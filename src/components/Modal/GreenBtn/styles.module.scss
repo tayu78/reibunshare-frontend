@@ -1,0 +1,15 @@
+@use "../../../styles/base" as *;
+
+//absolute to modal content
+.btn{
+    background: transparent;
+     color: $GREEN;
+     cursor: pointer;
+ }
+ .btnContainer{
+      text-align: right;
+     bottom: 1.5rem;
+     right: 1.5rem;
+     padding-right: 3rem;
+ }
+ 

@@ -1,0 +1,26 @@
+@use "../../../styles/base" as *;
+.profieEdit{
+    text-align: center;
+}
+
+.fileInput{
+    display: none;
+}
+
+
+.fileUploadButton{
+    display: inline-block;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+   
+
+}
+.avatarWrapper{
+    width: 200px;
+    height: 200px;
+}
+

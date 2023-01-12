@@ -10,6 +10,7 @@ import InputField from "../../Form/InputField";
 import UsageInput from "../Usages/UsageInput";
 import TagsField from "../Tags/TagsField";
 import { makeCard } from "../../../services/cardServices";
+import GreenBtn from "../../Modal/GreenBtn";
 
 type Props = {
   closeModal: (e: FormEvent<HTMLFormElement>, isFormSubmit: boolean) => void;
@@ -88,9 +89,7 @@ const NewCard = ({ closeModal }: Props) => {
         </div>
       </div>
 
-      <div className={styles.shareBtnContainer}>
-        <button className={styles.shareBtn}>Share</button>
-      </div>
+      <GreenBtn label="Share" />
     </form>
   );
 };
