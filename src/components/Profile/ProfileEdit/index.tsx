@@ -1,7 +1,14 @@
 import { useReducer, ChangeEvent, useRef, useState, FormEvent } from "react";
 import profileReducer from "../reducer";
-import { setProfileImgAction } from "../reducer/actions";
-import { uploadProfileImg } from "../../../services/userServices";
+import {
+  setProfileImgAction,
+  setEmailAction,
+  setUsernameAction,
+} from "../reducer/actions";
+import {
+  updateProfileInfo,
+  uploadProfileImg,
+} from "../../../services/userServices";
 import { getUserInformation } from "../../../redux/features/user/userSlice";
 import useAppDispatch from "../../../hooks/useAppDispatch";
 import useAppSelector from "../../../hooks/useAppSelector";
@@ -9,19 +16,21 @@ import styles from "./styles.module.scss";
 import LogoImg from "../../../assets/images/logo.svg";
 import Avatar from "../../Avatar";
 import GreenBtn from "../../Modal/GreenBtn";
+import InputField from "../../Form/InputField";
 
 type Props = {
   closeModal: (e: FormEvent<HTMLFormElement>, isFormSubmit: boolean) => void;
 };
 
 const ProfileEdit = ({ closeModal }: Props) => {
-  const initialState = {
-    img: {},
-  };
-
   const { userInfo } = useAppSelector((store) => store.user);
   const appDispatch = useAppDispatch();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const initialState = {
+    img: {},
+    email: userInfo.email,
+    username: userInfo.username,
+  };
 
   const [profileState, dispatch] = useReducer(profileReducer, initialState);
   const [isFileUploaded, setIsFileUploaded] = useState(false);
@@ -39,6 +48,18 @@ const ProfileEdit = ({ closeModal }: Props) => {
     setIsFileUploaded(true);
   };
 
+  const handleUpdateProfileInfo = async () => {
+    const { email: currentEmail, username: currentUsername } = userInfo;
+    const { email: newEmail, username: newUsername } = profileState;
+    let data = {};
+    if (currentEmail !== newEmail) data = { email: newEmail };
+    if (currentUsername !== newUsername)
+      data = { ...data, username: newUsername };
+
+    if (Object.keys(data).length === 0) return;
+    await updateProfileInfo(data);
+  };
+
   const handleUploadProfileImg = async () => {
     const formData = new FormData();
     formData.append("profileImg", profileState.img);
@@ -50,6 +71,7 @@ const ProfileEdit = ({ closeModal }: Props) => {
     if (isFileUploaded) {
       await handleUploadProfileImg();
     }
+    await handleUpdateProfileInfo();
     closeModal(e, true);
     appDispatch(getUserInformation());
   };
@@ -72,6 +94,26 @@ const ProfileEdit = ({ closeModal }: Props) => {
           ref={fileInputRef}
           className={styles.fileInput}
         />
+        <div className={styles.fieldWrapper}>
+          <InputField
+            placeholder="email"
+            handleChange={(e) => {
+              dispatch(setEmailAction(e as ChangeEvent<HTMLInputElement>));
+            }}
+            value={profileState.email}
+          />
+        </div>
+
+        <div className={styles.fieldWrapper}>
+          <InputField
+            placeholder="username"
+            handleChange={(e) => {
+              dispatch(setUsernameAction(e as ChangeEvent<HTMLInputElement>));
+            }}
+            value={profileState.username}
+          />
+        </div>
+
         <GreenBtn label="Save" />
       </form>
     </div>

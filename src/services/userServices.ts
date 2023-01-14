@@ -37,6 +37,21 @@ export const manageFollowing = async (userId: string, isFollowing: boolean) => {
   return await sendAxiosRequest(options);
 };
 
+export const updateProfileInfo = async (data: {
+  email?: string;
+  username?: string;
+}) => {
+  const options = {
+    method: RequestMethod.PUT,
+    url: `${import.meta.env.VITE_SERVER_URL}/api/v1/users/updateProfileInfo`,
+    data,
+    headers: {
+      authorization: `Bearer ${getUserToken()}`,
+    },
+  };
+  return await sendAxiosRequest(options);
+};
+
 export const uploadProfileImg = async (formData: FormData) => {
   const options = {
     method: RequestMethod.PUT,
