@@ -3,9 +3,9 @@ import { SetUsername } from "./auth";
 export interface IUser {
   _id?: string;
   accountName: string;
-  username: string;
-  email: string;
-  password: string;
+  username?: string;
+  email?: string;
+  password?: string;
   img?: File | string;
   follower?: string[];
   following?: string[];

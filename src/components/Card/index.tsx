@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useMediaPredicate } from "react-media-hook";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
-import Avatar from "../Avatar";
 import CardField from "./CardField";
 import Tags from "./Tags";
 import Usages from "./Usages";
@@ -15,8 +13,9 @@ import { Usage } from "../../types/card";
 import { manageLikes } from "../../services/cardServices";
 import useModal from "../../hooks/useModal";
 import useAppDispatch from "../../hooks/useAppDispatch";
-import useAppSelector from "../../hooks/useAppSelector";
 import { getUserInformation } from "../../redux/features/user/userSlice";
+import ProfileHeader from "../Profile/ProfileHeader";
+import { IUser } from "../../types/user";
 
 type Props = {
   cardId: string;
@@ -25,7 +24,7 @@ type Props = {
   description: string;
   meaning: string;
   tags: { name: string }[];
-  user: { _id: string; img: string; accountName: string };
+  user: IUser;
   likes: string[];
 };
 
@@ -39,21 +38,13 @@ const Card = ({
   user,
   likes,
 }: Props) => {
-  const { userInfo } = useAppSelector((store) => store.user);
   const smallScreen = useMediaPredicate(`(max-width: ${SMALL_SCREEN}px)`);
 
   const [showDetail, setShowDetail] = useState(false);
-  const [isLike, setIsLike] = useState(likes.includes(user._id));
+  const [isLike, setIsLike] = useState(likes.includes(user._id!));
 
   const { Modal, openModal, isOpen } = useModal();
   const appDispatch = useAppDispatch();
-
-  const navigate = useNavigate();
-
-  const handleMoveToProfile = () => {
-    if (user._id === userInfo._id) return navigate("/profile/me");
-    navigate(`/profile/${user._id}`);
-  };
 
   useEffect(() => {
     if (smallScreen) {
@@ -76,12 +67,7 @@ const Card = ({
         <AddToBook cardId={cardId} />
       </Modal>
       <div className={styles.card}>
-        <div className={styles.userInfo} onClick={handleMoveToProfile}>
-          <div className={styles.avatarWrapper}>
-            <Avatar url={user.img} />
-          </div>
-          <p>{user.accountName}</p>
-        </div>
+        <ProfileHeader user={user} />
         <div className={styles.cardFields}>
           <CardField label="Phrase">{phrase}</CardField>
 

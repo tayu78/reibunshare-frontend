@@ -64,3 +64,14 @@ export const uploadProfileImg = async (formData: FormData) => {
   };
   return await sendAxiosRequest(options);
 };
+
+export const searchUser = async (keyword: string) => {
+  const options = {
+    method: RequestMethod.GET,
+    url: `${import.meta.env.VITE_SERVER_URL}/api/v1/users/search`,
+    params: {
+      keyword,
+    },
+  };
+  return await sendAxiosRequest(options);
+};

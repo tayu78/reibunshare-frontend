@@ -1,13 +1,17 @@
+import { IUser } from "../../../types/user";
 import styles from "./styles.module.scss";
+import ProfileHeader from "../../Profile/ProfileHeader";
 
-const SearchContent = () => {
+type Props = {
+  datas: IUser[] | null;
+};
+
+const SearchContent = ({ datas }: Props) => {
   return (
     <ul className={styles.contents}>
-      <li>Japanese</li>
-      <li>English</li>
-      <li>Chinese</li>
-      <li>Spanish</li>
-      <li>Portguee</li>
+      {datas?.map((data, index) => {
+        return <ProfileHeader key={data._id} user={data} />;
+      })}
     </ul>
   );
 };

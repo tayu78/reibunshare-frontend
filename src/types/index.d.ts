@@ -9,3 +9,10 @@ export interface AxiosOption {
   url: string;
   data?: any;
 }
+
+export enum SEARCH_TAB_NAME {
+  TOP = "TOP",
+  USER = "USER",
+  LANGUAGE = "LANGUAGE",
+  DIALECT = "DIALECT",
+}
