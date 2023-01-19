@@ -1,4 +1,4 @@
-import { useEffect, useReducer, ChangeEvent, FormEvent } from "react";
+import { useEffect, useReducer, ChangeEvent, FormEvent, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styles from "./styles.module.scss";
 import signReducer from "./reducer";
@@ -56,6 +56,57 @@ const Sign = ({ isLogin }: Props) => {
     }
   };
 
+  const errorInitialState = {
+    email: [],
+    password: [],
+  };
+  const [errorState, setErrorState] = useState(errorInitialState);
+
+  const validate = (key: string) => {
+    let errors: string[] = [];
+
+    switch (key) {
+      case "email":
+        const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (!signState[key]!.trim()) {
+          errors.push("Email field is required. It cannot be empty.");
+          break;
+        }
+        if (!signState[key]!.match(regex)) {
+          errors.push("Please provide valid email address.");
+        }
+        break;
+      case "password":
+        const MIN_PASSWORD_LENGTH = 8;
+        // check length
+        if (signState[key]!.length < MIN_PASSWORD_LENGTH) {
+          errors.push(
+            `Password must consist of at least ${MIN_PASSWORD_LENGTH} characters.`
+          );
+        }
+        // check special character inclusion
+        const specialChars = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+        if (!signState[key]!.match(specialChars)) {
+          errors.push(
+            "Password must constain at least one special characters. (Example: !, @, %)."
+          );
+        }
+        // check number inclusion
+        const nums = /\d+/g;
+        if (!signState[key]!.match(nums)) {
+          errors.push("Password must constain at least one number.");
+        }
+        break;
+    }
+    // if(error) -> errorState[key]: message
+    setErrorState((prev) => {
+      return {
+        ...prev,
+        [key]: errors,
+      };
+    });
+  };
+
   return (
     <div className={styles.sign}>
       <h1>
@@ -74,6 +125,8 @@ const Sign = ({ isLogin }: Props) => {
                     dispatch(setEmailAction(e as ChangeEvent<HTMLInputElement>))
                   }
                   value={signState.email!}
+                  onBlur={() => validate("email")}
+                  errorMessages={errorState["email"]}
                 />
                 <InputField
                   placeholder="Password"
@@ -83,6 +136,8 @@ const Sign = ({ isLogin }: Props) => {
                     )
                   }
                   value={signState.password!}
+                  onBlur={() => validate("password")}
+                  errorMessages={errorState["password"]}
                 />
               </>
             ) : (
@@ -111,6 +166,8 @@ const Sign = ({ isLogin }: Props) => {
                     dispatch(setEmailAction(e as ChangeEvent<HTMLInputElement>))
                   }
                   value={signState.email!}
+                  onBlur={() => validate("email")}
+                  errorMessages={errorState["email"]}
                 />
                 <InputField
                   placeholder="Password"
@@ -120,6 +177,8 @@ const Sign = ({ isLogin }: Props) => {
                     )
                   }
                   value={signState.password!}
+                  onBlur={() => validate("password")}
+                  errorMessages={errorState["password"]}
                 />
                 <InputField
                   placeholder="ConfirmPassword"
