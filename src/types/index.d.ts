@@ -15,4 +15,5 @@ export enum SEARCH_TAB_NAME {
   USER = "USER",
   LANGUAGE = "LANGUAGE",
   DIALECT = "DIALECT",
+  TAG = "TAG",
 }

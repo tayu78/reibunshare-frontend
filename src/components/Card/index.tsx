@@ -26,6 +26,7 @@ type Props = {
   tags: { name: string }[];
   user: IUser;
   likes: string[];
+  isSmallScreen?: boolean;
 };
 
 const Card = ({
@@ -37,8 +38,11 @@ const Card = ({
   tags,
   user,
   likes,
+  isSmallScreen,
 }: Props) => {
-  const smallScreen = useMediaPredicate(`(max-width: ${SMALL_SCREEN}px)`);
+  const smallScreen = isSmallScreen
+    ? true
+    : useMediaPredicate(`(max-width: ${SMALL_SCREEN}px)`);
 
   const [showDetail, setShowDetail] = useState(false);
   const [isLike, setIsLike] = useState(likes.includes(user._id!));
@@ -66,9 +70,13 @@ const Card = ({
       <Modal>
         <AddToBook cardId={cardId} />
       </Modal>
-      <div className={styles.card}>
+      <div className={`${styles.card} ${smallScreen && styles.smallScreen}`}>
         <ProfileHeader user={user} />
-        <div className={styles.cardFields}>
+        <div
+          className={`${styles.cardFields} ${
+            smallScreen && styles.smallScreen
+          }`}
+        >
           <CardField label="Phrase">{phrase}</CardField>
 
           <div>

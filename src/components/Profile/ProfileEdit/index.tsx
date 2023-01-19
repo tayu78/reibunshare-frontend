@@ -27,8 +27,8 @@ const ProfileEdit = ({ closeModal }: Props) => {
   const appDispatch = useAppDispatch();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const initialState = {
-    img: {},
-    email: userInfo.email,
+    img: {} as File,
+    email: userInfo.email!,
     username: userInfo.username,
   };
 

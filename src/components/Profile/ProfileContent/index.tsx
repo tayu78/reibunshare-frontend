@@ -14,7 +14,7 @@ const ProfileContent = ({ user, Button }: Props) => {
     <div className={styles.profile}>
       <div className={styles.profileHeader}>
         <div className={styles.avatarWrapper}>
-          <Avatar url={img} />
+          <Avatar url={img as string} />
         </div>
         <div>
           <div className={styles.userInfo}>

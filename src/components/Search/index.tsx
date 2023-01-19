@@ -3,24 +3,39 @@ import styles from "./styles.module.scss";
 import SearchContent from "./SearchContent";
 import { SEARCH_TAB_NAME } from "../../types/index.d";
 import { searchUser } from "../../services/userServices";
+import { searchCardByTag } from "../../services/cardServices";
 import InputField from "../Form/InputField";
-import { IUser } from "../../types/user";
+import { IUser } from "../../types/user.d";
+import { CardWithUser } from "../../types/card.d";
 
 const Search = () => {
   const [selectedTab, setSelectedTab] = useState(SEARCH_TAB_NAME.USER);
   const [keyword, setKeyword] = useState("");
-  const [searchedDatas, setSearchedDatas] = useState<IUser[] | null>(null);
+  const [searchedDatas, setSearchedDatas] = useState<
+    IUser[] | CardWithUser[] | null
+  >(null);
 
   useEffect(() => {
-    if (!keyword) return;
+    if (!keyword) {
+      return setSearchedDatas(null);
+    }
     switch (selectedTab) {
       case SEARCH_TAB_NAME.USER:
         searchUser(keyword).then(({ data }) => {
           setSearchedDatas(data.users);
         });
         break;
+      case SEARCH_TAB_NAME.TAG:
+        searchCardByTag(keyword).then(({ data }) => {
+          setSearchedDatas(data.cards);
+        });
+        break;
     }
-  }, [keyword]);
+  }, [keyword, selectedTab]);
+
+  const isSelected = (tabname: SEARCH_TAB_NAME) => {
+    return tabname === selectedTab;
+  };
 
   return (
     <div className={styles.search}>
@@ -31,15 +46,33 @@ const Search = () => {
       />
       <ul className={styles.tabLists}>
         {/* <li onClick={() => setSelectedTab(SEARCH_TAB_NAME.TOP)}>Top</li> */}
-        <li onClick={() => setSelectedTab(SEARCH_TAB_NAME.USER)}>User</li>
-        <li onClick={() => setSelectedTab(SEARCH_TAB_NAME.LANGUAGE)}>
+        <li
+          onClick={() => setSelectedTab(SEARCH_TAB_NAME.USER)}
+          className={
+            isSelected(SEARCH_TAB_NAME.USER) ? styles.active : undefined
+          }
+        >
+          User
+        </li>
+        {/* <li onClick={() => setSelectedTab(SEARCH_TAB_NAME.LANGUAGE)}>
           Language
         </li>
-        <li onClick={() => setSelectedTab(SEARCH_TAB_NAME.DIALECT)}>Dialect</li>
+        <li onClick={() => setSelectedTab(SEARCH_TAB_NAME.DIALECT)}>Dialect</li> */}
+        <li
+          onClick={() => {
+            setSearchedDatas(null);
+            setSelectedTab(SEARCH_TAB_NAME.TAG);
+          }}
+          className={
+            isSelected(SEARCH_TAB_NAME.TAG) ? styles.active : undefined
+          }
+        >
+          Tag
+        </li>
       </ul>
       {searchedDatas && searchedDatas.length > 0 && (
         <div className={styles.contentWrapper}>
-          <SearchContent datas={searchedDatas} />
+          <SearchContent datas={searchedDatas} tab={selectedTab} />
         </div>
       )}
     </div>

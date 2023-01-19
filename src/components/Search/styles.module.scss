@@ -39,12 +39,19 @@ $PADDING_TOP: 25px;
     li{
         font-size: .8rem;
         cursor: pointer;
+        padding: 1.2rem;
+       
+        &.active{
+            color: $GREEN;
+            font-weight: 600;
+            border-bottom: 1px solid $GREEN;
+        }
     }
     
 }
 
 .contentWrapper{
-    padding-left: 2rem;
+    // padding-left: 2rem;
     padding-top: 1rem;
     border-bottom: 1px solid $BLACK_SECONDARY;
 }

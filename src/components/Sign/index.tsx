@@ -73,7 +73,7 @@ const Sign = ({ isLogin }: Props) => {
                   handleChange={(e) =>
                     dispatch(setEmailAction(e as ChangeEvent<HTMLInputElement>))
                   }
-                  value={signState.email}
+                  value={signState.email!}
                 />
                 <InputField
                   placeholder="Password"
@@ -82,7 +82,7 @@ const Sign = ({ isLogin }: Props) => {
                       setPasswordAction(e as ChangeEvent<HTMLInputElement>)
                     )
                   }
-                  value={signState.password}
+                  value={signState.password!}
                 />
               </>
             ) : (
@@ -103,14 +103,14 @@ const Sign = ({ isLogin }: Props) => {
                       setUsernameAction(e as ChangeEvent<HTMLInputElement>)
                     )
                   }
-                  value={signState.username}
+                  value={signState.username!}
                 />
                 <InputField
                   placeholder="Email"
                   handleChange={(e) =>
                     dispatch(setEmailAction(e as ChangeEvent<HTMLInputElement>))
                   }
-                  value={signState.email}
+                  value={signState.email!}
                 />
                 <InputField
                   placeholder="Password"
@@ -119,7 +119,7 @@ const Sign = ({ isLogin }: Props) => {
                       setPasswordAction(e as ChangeEvent<HTMLInputElement>)
                     )
                   }
-                  value={signState.password}
+                  value={signState.password!}
                 />
                 <InputField
                   placeholder="ConfirmPassword"

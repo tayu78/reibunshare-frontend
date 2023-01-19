@@ -6,6 +6,13 @@
     margin-left: 2rem;
     padding: 2rem;
     box-sizing: border-box;
+
+    &.smallScreen{
+        max-width: none;
+        width: 100%;
+        margin-left: 0;
+       }
+  
     @include for-sm-screen{
         max-width: none;
         width: 100%;
@@ -33,7 +40,11 @@
 .cardFields{
    display: grid;
    grid-template-columns: auto auto;
+   
+   &.smallScreen{
+    display: block;
+   }
    @include for-md-screen{
-     display: block;
+     
    }
 }
