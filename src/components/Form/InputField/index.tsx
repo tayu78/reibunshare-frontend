@@ -41,17 +41,17 @@ const InputField = ({
             value={value}
             onBlur={onBlur}
           />
-          {errorMessages &&
-            errorMessages?.length > 0 &&
-            errorMessages.map((msg, index) => {
-              return (
-                <ul>
+          <ul>
+            {errorMessages &&
+              errorMessages?.length > 0 &&
+              errorMessages.map((msg, index) => {
+                return (
                   <li key={index} className={styles.error}>
                     {msg}
                   </li>
-                </ul>
-              );
-            })}
+                );
+              })}
+          </ul>
         </div>
       )}
     </>
