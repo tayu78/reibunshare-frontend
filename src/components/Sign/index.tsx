@@ -59,6 +59,9 @@ const Sign = ({ isLogin }: Props) => {
   const errorInitialState = {
     email: [],
     password: [],
+    confirmPassword: [],
+    accountName: [],
+    username: [],
   };
   const [errorState, setErrorState] = useState(errorInitialState);
 
@@ -88,17 +91,32 @@ const Sign = ({ isLogin }: Props) => {
         const specialChars = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
         if (!signState[key]!.match(specialChars)) {
           errors.push(
-            "Password must constain at least one special characters. (Example: !, @, %)."
+            "Password must contain at least one special characters. (Example: !, @, %)."
           );
         }
         // check number inclusion
         const nums = /\d+/g;
         if (!signState[key]!.match(nums)) {
-          errors.push("Password must constain at least one number.");
+          errors.push("Password must contain at least one number.");
+        }
+        break;
+      case "confirmPassword":
+        if (signState[key] !== signState["password"]) {
+          errors.push("Password does not match.");
+        }
+        break;
+      case "accountName":
+        if (!signState[key].trim()) {
+          errors.push("Account name field is required. It cannot be empty.");
+        }
+        break;
+      case "username":
+        if (!signState[key]!.trim()) {
+          errors.push("User name field is required. It cannot be empty.");
         }
         break;
     }
-    // if(error) -> errorState[key]: message
+
     setErrorState((prev) => {
       return {
         ...prev,
@@ -110,7 +128,7 @@ const Sign = ({ isLogin }: Props) => {
   return (
     <div className={styles.sign}>
       <h1>
-        Welcome {isLogin && "back"} to
+        Welcome {isLogin && "back"} to&nbsp;
         <span className={styles.fontGreen}>ReibunShare</span> !!!
       </h1>
       <form onSubmit={handleSubmit}>
@@ -150,6 +168,8 @@ const Sign = ({ isLogin }: Props) => {
                     )
                   }
                   value={signState.accountName}
+                  onBlur={() => validate("accountName")}
+                  errorMessages={errorState["accountName"]}
                 />
                 <InputField
                   placeholder="Username"
@@ -159,6 +179,8 @@ const Sign = ({ isLogin }: Props) => {
                     )
                   }
                   value={signState.username!}
+                  onBlur={() => validate("username")}
+                  errorMessages={errorState["username"]}
                 />
                 <InputField
                   placeholder="Email"
@@ -190,6 +212,8 @@ const Sign = ({ isLogin }: Props) => {
                     )
                   }
                   value={signState.confirmPassword}
+                  onBlur={() => validate("confirmPassword")}
+                  errorMessages={errorState["confirmPassword"]}
                 />
               </>
             )}
