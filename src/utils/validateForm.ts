@@ -8,7 +8,7 @@ const validateForm = (key: string, state: any) => {
         errors.push("Email field is required. It cannot be empty.");
         break;
       }
-      if (state[key]!.match(regex)) {
+      if (!state[key]!.match(regex)) {
         errors.push("Please provide valid email address.");
       }
       break;
