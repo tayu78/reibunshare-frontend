@@ -14,6 +14,7 @@ import {
 import InputField from "../../components/Form/InputField";
 import { IUser } from "../../types/user";
 import { registerUser, userLogin } from "../../redux/features/user/userSlice";
+import Spinner from "../Loading/Spinner";
 
 type Props = {
   isLogin?: boolean;
@@ -42,9 +43,27 @@ const Sign = ({ isLogin }: Props) => {
 
   const [signState, dispatch] = useReducer(signReducer, initialState);
 
+  const errorInitialState = {
+    email: [],
+    password: [],
+    confirmPassword: [],
+    accountName: [],
+    username: [],
+  };
+  const [errorState, setErrorState] = useState(errorInitialState);
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    const { accountName, email, password, username } = signState;
     e.preventDefault();
+    const isError = Object.values(errorState).some((errorArray) => {
+      return errorArray.length > 0;
+    });
+
+    if (isError) {
+      return;
+    }
+
+    const { accountName, email, password, username } = signState;
+
     if (isLogin) {
       appDispatch(userLogin({ email, password } as IUser));
     } else {
@@ -55,15 +74,6 @@ const Sign = ({ isLogin }: Props) => {
       appDispatch(registerUser({ accountName, email, password, username }));
     }
   };
-
-  const errorInitialState = {
-    email: [],
-    password: [],
-    confirmPassword: [],
-    accountName: [],
-    username: [],
-  };
-  const [errorState, setErrorState] = useState(errorInitialState);
 
   const validate = (key: string) => {
     let errors: string[] = [];
@@ -148,6 +158,7 @@ const Sign = ({ isLogin }: Props) => {
                 />
                 <InputField
                   placeholder="Password"
+                  type="password"
                   handleChange={(e) =>
                     dispatch(
                       setPasswordAction(e as ChangeEvent<HTMLInputElement>)
@@ -193,6 +204,7 @@ const Sign = ({ isLogin }: Props) => {
                 />
                 <InputField
                   placeholder="Password"
+                  type="password"
                   handleChange={(e) =>
                     dispatch(
                       setPasswordAction(e as ChangeEvent<HTMLInputElement>)
@@ -204,6 +216,7 @@ const Sign = ({ isLogin }: Props) => {
                 />
                 <InputField
                   placeholder="ConfirmPassword"
+                  type="password"
                   handleChange={(e) =>
                     dispatch(
                       setConfirmPasswordAction(
@@ -217,7 +230,10 @@ const Sign = ({ isLogin }: Props) => {
                 />
               </>
             )}
-            <button type="submit">{isLogin ? "LogIn" : "SignUp"}</button>
+            <button type="submit" disabled={isLoading}>
+              {isLoading && <Spinner />}
+              {isLogin ? "LogIn" : "SignUp"}
+            </button>
           </div>
           {isLogin ? (
             <p>

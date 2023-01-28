@@ -10,6 +10,7 @@ type Props = {
   textarea?: boolean;
   errorMessages?: string[];
   onBlur?: () => void;
+  type?: string;
 };
 
 const InputField = ({
@@ -19,6 +20,7 @@ const InputField = ({
   textarea,
   errorMessages,
   onBlur,
+  type = "text",
 }: Props) => {
   return (
     <>
@@ -32,7 +34,7 @@ const InputField = ({
       ) : (
         <div>
           <input
-            type="text"
+            type={type}
             className={`${styles.input} ${
               errorMessages && errorMessages?.length > 0 && styles.error
             }`}
