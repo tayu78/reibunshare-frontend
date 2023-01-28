@@ -4,7 +4,7 @@ const validateForm = (key: string, state: any) => {
   switch (key) {
     case "email":
       const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-      if (state[key].trim()) {
+      if (!state[key].trim()) {
         errors.push("Email field is required. It cannot be empty.");
         break;
       }
