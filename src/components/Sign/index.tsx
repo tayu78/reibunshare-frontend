@@ -15,6 +15,7 @@ import InputField from "../../components/Form/InputField";
 import { IUser } from "../../types/user";
 import { registerUser, userLogin } from "../../redux/features/user/userSlice";
 import Spinner from "../Loading/Spinner";
+import validateForm from "../../utils/validateForm";
 
 type Props = {
   isLogin?: boolean;
@@ -75,57 +76,8 @@ const Sign = ({ isLogin }: Props) => {
     }
   };
 
-  const validate = (key: string) => {
-    let errors: string[] = [];
-
-    switch (key) {
-      case "email":
-        const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if (!signState[key]!.trim()) {
-          errors.push("Email field is required. It cannot be empty.");
-          break;
-        }
-        if (!signState[key]!.match(regex)) {
-          errors.push("Please provide valid email address.");
-        }
-        break;
-      case "password":
-        const MIN_PASSWORD_LENGTH = 8;
-        // check length
-        if (signState[key]!.length < MIN_PASSWORD_LENGTH) {
-          errors.push(
-            `Password must consist of at least ${MIN_PASSWORD_LENGTH} characters.`
-          );
-        }
-        // check special character inclusion
-        const specialChars = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-        if (!signState[key]!.match(specialChars)) {
-          errors.push(
-            "Password must contain at least one special characters. (Example: !, @, %)."
-          );
-        }
-        // check number inclusion
-        const nums = /\d+/g;
-        if (!signState[key]!.match(nums)) {
-          errors.push("Password must contain at least one number.");
-        }
-        break;
-      case "confirmPassword":
-        if (signState[key] !== signState["password"]) {
-          errors.push("Password does not match.");
-        }
-        break;
-      case "accountName":
-        if (!signState[key].trim()) {
-          errors.push("Account name field is required. It cannot be empty.");
-        }
-        break;
-      case "username":
-        if (!signState[key]!.trim()) {
-          errors.push("User name field is required. It cannot be empty.");
-        }
-        break;
-    }
+  const handleBlur = (key: string) => {
+    const errors = validateForm(key, signState);
 
     setErrorState((prev) => {
       return {
@@ -153,7 +105,7 @@ const Sign = ({ isLogin }: Props) => {
                     dispatch(setEmailAction(e as ChangeEvent<HTMLInputElement>))
                   }
                   value={signState.email!}
-                  onBlur={() => validate("email")}
+                  onBlur={() => handleBlur("email")}
                   errorMessages={errorState["email"]}
                 />
                 <InputField
@@ -165,7 +117,7 @@ const Sign = ({ isLogin }: Props) => {
                     )
                   }
                   value={signState.password!}
-                  onBlur={() => validate("password")}
+                  onBlur={() => handleBlur("password")}
                   errorMessages={errorState["password"]}
                 />
               </>
@@ -179,7 +131,7 @@ const Sign = ({ isLogin }: Props) => {
                     )
                   }
                   value={signState.accountName}
-                  onBlur={() => validate("accountName")}
+                  onBlur={() => handleBlur("accountName")}
                   errorMessages={errorState["accountName"]}
                 />
                 <InputField
@@ -190,7 +142,7 @@ const Sign = ({ isLogin }: Props) => {
                     )
                   }
                   value={signState.username!}
-                  onBlur={() => validate("username")}
+                  onBlur={() => handleBlur("username")}
                   errorMessages={errorState["username"]}
                 />
                 <InputField
@@ -199,7 +151,7 @@ const Sign = ({ isLogin }: Props) => {
                     dispatch(setEmailAction(e as ChangeEvent<HTMLInputElement>))
                   }
                   value={signState.email!}
-                  onBlur={() => validate("email")}
+                  onBlur={() => handleBlur("email")}
                   errorMessages={errorState["email"]}
                 />
                 <InputField
@@ -211,7 +163,7 @@ const Sign = ({ isLogin }: Props) => {
                     )
                   }
                   value={signState.password!}
-                  onBlur={() => validate("password")}
+                  onBlur={() => handleBlur("password")}
                   errorMessages={errorState["password"]}
                 />
                 <InputField
@@ -225,7 +177,7 @@ const Sign = ({ isLogin }: Props) => {
                     )
                   }
                   value={signState.confirmPassword}
-                  onBlur={() => validate("confirmPassword")}
+                  onBlur={() => handleBlur("confirmPassword")}
                   errorMessages={errorState["confirmPassword"]}
                 />
               </>
