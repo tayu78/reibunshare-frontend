@@ -13,8 +13,13 @@ import {
 } from "./reducer/actions";
 import InputField from "../../components/Form/InputField";
 import { IUser } from "../../types/user";
-import { registerUser, userLogin } from "../../redux/features/user/userSlice";
+import {
+  registerUser,
+  userLogin,
+  changeError,
+} from "../../redux/features/user/userSlice";
 import Spinner from "../Loading/Spinner";
+import Msg from "../Msg";
 import validateForm from "../../utils/validateForm";
 
 type Props = {
@@ -44,6 +49,10 @@ const Sign = ({ isLogin }: Props) => {
 
   const [signState, dispatch] = useReducer(signReducer, initialState);
 
+  useEffect(() => {
+    appDispatch(changeError(null));
+  }, [isLogin]);
+
   const errorInitialState = {
     email: [],
     password: [],
@@ -68,10 +77,6 @@ const Sign = ({ isLogin }: Props) => {
     if (isLogin) {
       appDispatch(userLogin({ email, password } as IUser));
     } else {
-      if (signState.password !== signState.confirmPassword) {
-        alert("password does not match");
-        return;
-      }
       appDispatch(registerUser({ accountName, email, password, username }));
     }
   };
@@ -97,6 +102,7 @@ const Sign = ({ isLogin }: Props) => {
         <div className={styles.formBoard}>
           <div className={styles.formContent}>
             <p>{isLogin ? "LogIn" : "SignUp"}</p>
+            {error && <Msg msg={error} status="error" />}
             {isLogin ? (
               <>
                 <InputField

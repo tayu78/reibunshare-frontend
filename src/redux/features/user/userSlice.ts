@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IUser } from "../../../types/user.d";
 import { signUp, login } from "../../../services/authServices";
 import { getUserInfo } from "../../../services/userServices";
@@ -9,7 +9,7 @@ const initialState = {
   isAuthenticated: false,
   userInfo: {} as IUser & { userBooks: IBook[] },
   userToken: null,
-  error: null as null | string, //TODO: have to change type depend on error handling bellow
+  error: null as null | string,
   success: false,
 };
 
@@ -27,12 +27,11 @@ export const registerUser = createAsyncThunk(
         password,
       });
       if (resultType === "error") {
-        throw new Error(data.message);
+        return rejectWithValue(data.message);
       }
 
       return data;
     } catch (err) {
-      //TODO: more detailed error handling
       return rejectWithValue("Unexpected Error Occurred");
     }
   }
@@ -44,11 +43,10 @@ export const userLogin = createAsyncThunk(
     try {
       const { data, resultType } = await login({ email, password } as IUser);
       if (resultType === "error") {
-        throw new Error(data.message);
+        return rejectWithValue(data.message);
       }
       return data;
     } catch (err) {
-      //TODO: more detailed error handling
       return rejectWithValue("Unexpected Error Occurred");
     }
   }
@@ -60,11 +58,10 @@ export const getUserInformation = createAsyncThunk(
     try {
       const { data, resultType } = await getUserInfo();
       if (resultType === "error") {
-        throw new Error(data.message);
+        return rejectWithValue(data.message);
       }
       return data;
     } catch (err) {
-      //TODO: more detailed error handling
       return rejectWithValue("Unexpected Error Occurred");
     }
   }
@@ -73,7 +70,12 @@ export const getUserInformation = createAsyncThunk(
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    changeError(state, action: PayloadAction<null | string>) {
+      console.log(action.payload);
+      state.error = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(registerUser.pending, (state) => {
       state.isLoading = true;
@@ -89,7 +91,7 @@ export const userSlice = createSlice({
     });
     builder.addCase(registerUser.rejected, (state, { payload }) => {
       state.isLoading = false;
-      state.error = payload as string; //TODO: have to change type depend on error handling above
+      state.error = payload as string;
     });
 
     builder.addCase(userLogin.pending, (state) => {
@@ -105,7 +107,7 @@ export const userSlice = createSlice({
     });
     builder.addCase(userLogin.rejected, (state, { payload }) => {
       state.isLoading = false;
-      state.error = payload as string; //TODO: have to change type depend on error handling above
+      state.error = payload as string;
     });
     builder.addCase(getUserInformation.fulfilled, (state, { payload }) => {
       state.isLoading = false;
@@ -119,11 +121,11 @@ export const userSlice = createSlice({
 
     builder.addCase(getUserInformation.rejected, (state, { payload }) => {
       state.isLoading = false;
-      state.error = payload as string; //TODO: have to change type depend on error handling above
+      state.error = payload as string;
     });
   },
 });
 
-// export const { } = userSlice.actions;
+export const { changeError } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -1,0 +1,20 @@
+@use "../../styles/base" as *;
+
+.msg{
+    margin: 10px 0;
+    padding: .8rem;
+    border-radius: 5px;
+    background-color: rgb(38, 247, 177);
+    color: rgb(16, 110, 81);
+    
+    display: flex;
+    align-items: center;
+    gap: 5px;
+   
+
+    &.error{
+        background-color: $PINK_FOR_ERROR;
+        color: rgb(187, 0, 0);
+    }
+}
+
