@@ -9,6 +9,7 @@ import useAppSelector from "../../../hooks/useAppSelector";
 import useDetectFirstRender from "../../../hooks/useDetectFirstRender";
 import ProfileContent from "../ProfileContent";
 import { IUser } from "../../../types/user";
+import useSocketContext from "../../../hooks/useSocketContext";
 
 const TheirProfile = () => {
   const { userId } = useParams();
@@ -18,6 +19,8 @@ const TheirProfile = () => {
   const [isFollowing, setIsFollowing] = useState(
     userInfo.following!.includes(userId!)
   );
+
+  const socket = useSocketContext();
 
   const isFirstRender = useDetectFirstRender();
 
@@ -31,6 +34,8 @@ const TheirProfile = () => {
   useEffect(() => {
     if (isFirstRender) return;
     manageFollowing(userId!, isFollowing);
+    if (!isFollowing) return;
+    socket?.emit("following", { followingUserId: userId });
   }, [isFollowing]);
 
   return (

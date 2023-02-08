@@ -10,3 +10,16 @@
         min-height: 100vh;
     }
 }
+
+.notificationMsg{
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+   @include for-sm-screen{
+    bottom: auto;
+    left:auto;
+    top: 2rem;
+    right: 2rem;
+   }
+
+}
