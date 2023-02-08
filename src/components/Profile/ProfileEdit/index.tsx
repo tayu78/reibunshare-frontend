@@ -17,6 +17,7 @@ import LogoImg from "../../../assets/images/logo.svg";
 import Avatar from "../../Avatar";
 import GreenBtn from "../../Modal/GreenBtn";
 import InputField from "../../Form/InputField";
+import validateForm from "../../../utils/validateForm";
 
 type Props = {
   closeModal: (e: FormEvent<HTMLFormElement>, isFormSubmit: boolean) => void;
@@ -75,6 +76,14 @@ const ProfileEdit = ({ closeModal }: Props) => {
     closeModal(e, true);
     appDispatch(getUserInformation());
   };
+
+  const handleBlur = (key: string) => {};
+
+  const errorInitialState = {
+    email: [],
+    username: [],
+  };
+  const [errorState, setErrorState] = useState(errorInitialState);
 
   return (
     <div className={styles.profileEdit}>
