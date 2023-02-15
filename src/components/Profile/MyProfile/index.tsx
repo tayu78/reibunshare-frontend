@@ -3,6 +3,7 @@ import ProfileEdit from "../ProfileEdit";
 import useAppSelector from "../../../hooks/useAppSelector";
 import useModal from "../../../hooks/useModal";
 import ProfileContent from "../ProfileContent";
+import BackBtn from "../../Btn/Back";
 
 const MyProfile = () => {
   const { Modal, openModal, closeModal } = useModal();
@@ -10,6 +11,7 @@ const MyProfile = () => {
 
   return (
     <>
+      <BackBtn />
       <Modal>
         <ProfileEdit closeModal={closeModal} />
       </Modal>

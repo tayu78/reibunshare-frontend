@@ -10,6 +10,7 @@ import useDetectFirstRender from "../../../hooks/useDetectFirstRender";
 import ProfileContent from "../ProfileContent";
 import { IUser } from "../../../types/user";
 import useSocketContext from "../../../hooks/useSocketContext";
+import BackBtn from "../../Btn/Back";
 
 const TheirProfile = () => {
   const { userId } = useParams();
@@ -41,6 +42,7 @@ const TheirProfile = () => {
   return (
     <div>
       {isLoading && "Loading...."}
+      <BackBtn />
       {user && (
         <ProfileContent
           user={user}

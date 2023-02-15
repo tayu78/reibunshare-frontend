@@ -4,7 +4,7 @@ import ProtectedRoutes from "./routes/ProtectedRoutes";
 import Landing from "./pages/Landing";
 import Home from "./pages/Home";
 import Search from "./components/Search";
-import Notifications from "./components/Notifications";
+import Notifications from "./pages/Notifications";
 import ProfilePage from "./pages/Profile";
 import UserBook from "./pages/Profile/UserBook";
 import Sign from "./components/Sign";
