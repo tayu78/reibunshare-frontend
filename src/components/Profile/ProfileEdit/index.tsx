@@ -15,7 +15,7 @@ import useAppSelector from "../../../hooks/useAppSelector";
 import styles from "./styles.module.scss";
 import LogoImg from "../../../assets/images/logo.svg";
 import Avatar from "../../Avatar";
-import GreenBtn from "../../Modal/GreenBtn";
+import Btn from "../../Btn";
 import InputField from "../../Form/InputField";
 import validateForm from "../../../utils/validateForm";
 
@@ -123,7 +123,9 @@ const ProfileEdit = ({ closeModal }: Props) => {
           />
         </div>
 
-        <GreenBtn label="Save" />
+        <div className={styles.modalBtnContainer}>
+          <Btn label="Save" />
+        </div>
       </form>
     </div>
   );

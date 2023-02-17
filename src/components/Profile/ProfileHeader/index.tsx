@@ -19,6 +19,7 @@ const ProfileHeader = ({ user }: Props) => {
       <div className={styles.avatarWrapper}>
         <Avatar url={user.img as string} />
       </div>
+
       <p>{user.accountName}</p>
     </div>
   );

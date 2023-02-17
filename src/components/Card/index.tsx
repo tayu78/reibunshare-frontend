@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useMediaPredicate } from "react-media-hook";
+import { useNavigate } from "react-router-dom";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
@@ -49,6 +50,8 @@ const Card = ({
 
   const { Modal, openModal, isOpen } = useModal();
   const appDispatch = useAppDispatch();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (smallScreen) {
@@ -111,7 +114,10 @@ const Card = ({
           >
             <FavoriteBorderOutlinedIcon />
           </div>
-          <div className={styles.icon}>
+          <div
+            className={styles.icon}
+            onClick={() => navigate(`/card/${cardId}`)}
+          >
             <ChatBubbleOutlineOutlinedIcon />
           </div>
           <div className={styles.icon} onClick={() => openModal()}>

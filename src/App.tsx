@@ -7,6 +7,7 @@ import Search from "./components/Search";
 import Notifications from "./pages/Notifications";
 import ProfilePage from "./pages/Profile";
 import UserBook from "./pages/Profile/UserBook";
+import Card from "./pages/Card";
 import Sign from "./components/Sign";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/profile/me" element={<ProfilePage isMine />} />
           <Route path="/profile/:userId" element={<ProfilePage />} />
           <Route path="/book/:bookId" element={<UserBook />} />
+          <Route path="/card/:cardId" element={<Card />} />
         </Route>
       </Routes>
     </BrowserRouter>

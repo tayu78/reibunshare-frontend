@@ -1,3 +1,5 @@
+import { IUser } from "./user";
+
 export interface ICard {
   _id?: string;
   // userId: string,
@@ -10,6 +12,15 @@ export interface ICard {
   tags: { name: string }[];
   // createdAt: Date,
   // updatedAt: Date
+}
+
+export interface IComment {
+  _id: string;
+  user: IUser;
+  cardId: string;
+  createdAt: Date;
+  updatedAt: Date;
+  content: string;
 }
 
 export type CardWithUser = ICard & {

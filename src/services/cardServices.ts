@@ -11,6 +11,17 @@ export const getCards = async () => {
   return await sendAxiosRequest(options);
 };
 
+export const getCard = async (cardId: string) => {
+  const options = {
+    method: RequestMethod.GET,
+    url: `${import.meta.env.VITE_SERVER_URL}/api/v1/cards/${cardId}`,
+    headers: {
+      authorization: `Bearer ${getUserToken()}`,
+    },
+  };
+  return await sendAxiosRequest(options);
+};
+
 export const makeCard = async ({
   phrase,
   usages,
@@ -70,6 +81,32 @@ export const searchCardByTag = async (keyword: string) => {
     url: `${import.meta.env.VITE_SERVER_URL}/api/v1/cards/search`,
     params: {
       keyword,
+    },
+  };
+  return await sendAxiosRequest(options);
+};
+
+export const getComments = async (cardId: string) => {
+  const options = {
+    method: RequestMethod.GET,
+    url: `${import.meta.env.VITE_SERVER_URL}/api/v1/cards/comments/${cardId}`,
+    headers: {
+      authorization: `Bearer ${getUserToken()}`,
+    },
+  };
+
+  return await sendAxiosRequest(options);
+};
+
+export const makeComment = async (cardId: string, content: string) => {
+  const options = {
+    method: RequestMethod.POST,
+    url: `${import.meta.env.VITE_SERVER_URL}/api/v1/cards/comments/${cardId}`,
+    data: {
+      content,
+    },
+    headers: {
+      authorization: `Bearer ${getUserToken()}`,
     },
   };
   return await sendAxiosRequest(options);

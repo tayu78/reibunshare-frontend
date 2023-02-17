@@ -1,0 +1,11 @@
+@use "../../styles/base" as *;
+
+.btn {
+    border: 1px solid #fff;
+    padding: .6rem .7rem;
+    border-radius: 7px;
+    display: inline-block;
+    cursor: pointer;
+    background: transparent;
+    color: $GREEN;
+}
