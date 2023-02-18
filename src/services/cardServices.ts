@@ -11,6 +11,19 @@ export const getCards = async () => {
   return await sendAxiosRequest(options);
 };
 
+export const getCardsOfFollowingUser = async () => {
+  const options = {
+    method: RequestMethod.GET,
+    url: `${
+      import.meta.env.VITE_SERVER_URL
+    }/api/v1/cards/getCardsOfFollowingUser`,
+    headers: {
+      authorization: `Bearer ${getUserToken()}`,
+    },
+  };
+  return await sendAxiosRequest(options);
+};
+
 export const getCard = async (cardId: string) => {
   const options = {
     method: RequestMethod.GET,

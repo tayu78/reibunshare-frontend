@@ -1,0 +1,43 @@
+@use "../../styles/base" as *;
+
+.dropdown{
+    background: $BLACK_SECONDARY;
+    border-radius: 5px;
+    width: fit-content;
+    margin: 1rem;
+    // color: $GREEN;
+}
+
+.dropdownContainer{
+    position: relative;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.dropdownList{
+    position: absolute;
+   
+    white-space: nowrap;
+    top: 2.5rem;
+    left: 0;
+    background-color: $BLACK_SECONDARY;
+    border-radius: 5px;
+    margin-top: 1rem;
+    padding: 1rem;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    display: none;
+
+    &.active{
+        display: flex;flex-direction: column;
+        gap: 1rem;
+    }
+
+    li{
+        cursor: pointer;
+    }
+    li:hover{
+        color: $GREEN;
+    }
+  
+
+}
