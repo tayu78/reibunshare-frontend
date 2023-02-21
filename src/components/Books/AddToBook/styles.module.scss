@@ -7,17 +7,22 @@
     & > p{
         margin-bottom: 2rem;
     }
+    legend{
+        margin-bottom: .5rem;
+    }
 }
 
 .addNewBook{
     color: $GREEN;
     margin-bottom: 1rem;
+    cursor: pointer;
 }
 
 .willAddNewBook{
     p{
         margin-bottom: .8rem;
     }
+    margin-top: 2rem;
 }
 .willAddNewBookField{
     margin-top: 1.5rem;
@@ -29,5 +34,6 @@
     button{
         background-color: transparent;
         color: $GREEN;
+        cursor: pointer;
     }
 }

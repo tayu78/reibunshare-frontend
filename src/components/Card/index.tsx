@@ -17,6 +17,8 @@ import useAppDispatch from "../../hooks/useAppDispatch";
 import { getUserInformation } from "../../redux/features/user/userSlice";
 import ProfileHeader from "../Profile/ProfileHeader";
 import { IUser } from "../../types/user";
+import useAppSelector from "../../hooks/useAppSelector";
+import useDetectFirstRender from "../../hooks/useDetectFirstRender";
 
 type Props = {
   cardId: string;
@@ -45,8 +47,11 @@ const Card = ({
     ? true
     : useMediaPredicate(`(max-width: ${SMALL_SCREEN}px)`);
 
+  const { userInfo } = useAppSelector((store) => store.user);
+  const isFirstRender = useDetectFirstRender();
+
   const [showDetail, setShowDetail] = useState(false);
-  const [isLike, setIsLike] = useState(likes.includes(user._id!));
+  const [isLike, setIsLike] = useState(likes.includes(userInfo._id!));
 
   const { Modal, openModal, isOpen } = useModal();
   const appDispatch = useAppDispatch();
@@ -60,6 +65,7 @@ const Card = ({
   }, [smallScreen]);
 
   useEffect(() => {
+    if (isFirstRender) return;
     manageLikes(cardId, isLike);
   }, [isLike]);
 
@@ -88,7 +94,12 @@ const Card = ({
           </div>
 
           {smallScreen && !showDetail && (
-            <p onClick={() => setShowDetail((prev) => !prev)}>show more...</p>
+            <p
+              className={styles.showMore}
+              onClick={() => setShowDetail((prev) => !prev)}
+            >
+              show more...
+            </p>
           )}
           {(showDetail || !smallScreen) && (
             <>
@@ -113,6 +124,7 @@ const Card = ({
             onClick={() => setIsLike((prev) => !prev)}
           >
             <FavoriteBorderOutlinedIcon />
+            <span>{likes.length}</span>
           </div>
           <div
             className={styles.icon}

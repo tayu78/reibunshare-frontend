@@ -23,7 +23,6 @@ const ProtectedRoutes = () => {
       socket.emit("activeUser", { userId: userInfo._id, socketId: socket.id });
 
       socket.on("notification", (notification) => {
-        console.log("notification: ", notification);
         setNotification(notification.content);
       });
     });

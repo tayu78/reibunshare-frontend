@@ -6,6 +6,8 @@
 
 .outlet{
     width: 100%;
+    max-height: 100vh;
+    overflow-y: scroll;
     @include for-sm-screen{
         min-height: 100vh;
     }

@@ -15,7 +15,6 @@ const Home = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    console.log("getCardOption>>>>>>", getCardOption);
 
     switch (getCardOption) {
       case options[0]:

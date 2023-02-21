@@ -64,13 +64,14 @@
     }
 
     .btn{
+        padding: .6rem 2rem;
+        border-radius: 7px;
+        display: inline-block;
+        cursor: pointer;
         background: linear-gradient(90deg, #4AE99C 0%, rgba(55, 235, 149, 0.526042) 50.53%, rgba(35, 237, 140, 0) 106.61%);
         border: 1px solid #4AE99C;
-        padding-left: 2rem;
-        padding-right: 2rem;
         margin-left: 20%;
         margin-top: 10%;
-
         @include for-sm-screen {
             margin-left: 0;
         }
