@@ -39,7 +39,11 @@ const ProtectedRoutes = () => {
       </div>
       {notification && (
         <div className={styles.notificationMsg}>
-          <Msg status="success" msg={notification} />
+          <Msg
+            status="success"
+            msg={notification}
+            closeFn={() => setNotification("")}
+          />
         </div>
       )}
     </SocketContext.Provider>

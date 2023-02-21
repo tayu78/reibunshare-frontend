@@ -3,6 +3,7 @@
 .msg{
     margin: 10px 0;
     padding: .8rem;
+    padding-right: 3rem;
     border-radius: 5px;
     background-color: rgb(38, 247, 177);
     color: rgb(16, 110, 81);
@@ -10,11 +11,18 @@
     display: flex;
     align-items: center;
     gap: 5px;
-   
+   position: relative;
 
     &.error{
         background-color: $PINK_FOR_ERROR;
         color: rgb(187, 0, 0);
     }
+}
+
+.cancelBtn{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
 }
 
