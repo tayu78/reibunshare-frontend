@@ -45,7 +45,6 @@ const Search = () => {
         value={keyword}
       />
       <ul className={styles.tabLists}>
-        {/* <li onClick={() => setSelectedTab(SEARCH_TAB_NAME.TOP)}>Top</li> */}
         <li
           onClick={() => setSelectedTab(SEARCH_TAB_NAME.USER)}
           className={
@@ -54,10 +53,7 @@ const Search = () => {
         >
           User
         </li>
-        {/* <li onClick={() => setSelectedTab(SEARCH_TAB_NAME.LANGUAGE)}>
-          Language
-        </li>
-        <li onClick={() => setSelectedTab(SEARCH_TAB_NAME.DIALECT)}>Dialect</li> */}
+
         <li
           onClick={() => {
             setSearchedDatas(null);
@@ -70,7 +66,7 @@ const Search = () => {
           Tag
         </li>
       </ul>
-      {searchedDatas && searchedDatas.length > 0 && (
+      {searchedDatas && (
         <div className={styles.contentWrapper}>
           <SearchContent datas={searchedDatas} tab={selectedTab} />
         </div>
