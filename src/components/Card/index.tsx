@@ -81,42 +81,37 @@ const Card = ({
       </Modal>
       <div className={`${styles.card} ${smallScreen && styles.smallScreen}`}>
         <ProfileHeader user={user} />
-        <div
-          className={`${styles.cardFields} ${
-            smallScreen && styles.smallScreen
-          }`}
-        >
-          <CardField label="Phrase">{phrase}</CardField>
 
-          <div>
-            <p className={styles.label}>Usages</p>
-            <Usages usages={usages} />
-          </div>
+        <CardField label="Phrase">{phrase}</CardField>
 
-          {smallScreen && !showDetail && (
-            <p
-              className={styles.showMore}
-              onClick={() => setShowDetail((prev) => !prev)}
-            >
-              show more...
-            </p>
-          )}
-          {(showDetail || !smallScreen) && (
-            <>
-              {description && (
-                <CardField label="Description">{description}</CardField>
-              )}
-
-              <CardField label="Meaning">{meaning}</CardField>
-              {tags.length > 0 && (
-                <div>
-                  <p className={styles.label}>Tags</p>
-                  <Tags tags={tags} />
-                </div>
-              )}
-            </>
-          )}
+        <div>
+          <p className={styles.label}>Usages</p>
+          <Usages usages={usages} />
         </div>
+
+        {smallScreen && !showDetail && (
+          <p
+            className={styles.showMore}
+            onClick={() => setShowDetail((prev) => !prev)}
+          >
+            show more...
+          </p>
+        )}
+        {(showDetail || !smallScreen) && (
+          <>
+            {description && (
+              <CardField label="Description">{description}</CardField>
+            )}
+
+            <CardField label="Meaning">{meaning}</CardField>
+            {tags.length > 0 && (
+              <div>
+                <p className={styles.label}>Tags</p>
+                <Tags tags={tags} />
+              </div>
+            )}
+          </>
+        )}
 
         <div className={styles.icons}>
           <div

@@ -2,7 +2,7 @@
 
 .card{
     border: 1px solid $BLACK_SECONDARY;
-    max-width: 80%;
+    max-width: 70%;
     margin-left: 2rem;
     padding: 2rem;
     box-sizing: border-box;
@@ -37,17 +37,6 @@
     }
 }
 
-.cardFields{
-   display: grid;
-   grid-template-columns: auto auto;
-   
-   &.smallScreen{
-    display: block;
-   }
-   @include for-md-screen{
-     
-   }
-}
 
 .showMore{
     cursor: pointer;
