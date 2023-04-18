@@ -110,6 +110,7 @@ const ProfileEdit = ({ closeModal }: Props) => {
               dispatch(setEmailAction(e as ChangeEvent<HTMLInputElement>));
             }}
             value={profileState.email}
+            label="email"
           />
         </div>
 
@@ -120,6 +121,7 @@ const ProfileEdit = ({ closeModal }: Props) => {
               dispatch(setUsernameAction(e as ChangeEvent<HTMLInputElement>));
             }}
             value={profileState.username}
+            label="username"
           />
         </div>
 
