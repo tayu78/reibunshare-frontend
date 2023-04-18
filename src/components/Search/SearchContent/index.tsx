@@ -15,38 +15,40 @@ const SearchContent = ({ datas, tab }: Props) => {
     <ul className={styles.contents}>
       {datas.length > 0 ? (
         datas.map((data) => {
-          switch (tab) {
-            case SEARCH_TAB_NAME.USER:
-              return (
-                <div className={styles.profile}>
-                  <ProfileHeader key={data._id} user={data as IUser} />
-                </div>
-              );
-            case SEARCH_TAB_NAME.TAG:
-              const {
-                _id,
-                phrase,
-                usages,
-                description,
-                meaning,
-                tags,
-                user,
-                likes,
-              } = data as CardWithUser;
-              return (
-                <Card
-                  key={_id!}
-                  cardId={_id!}
-                  phrase={phrase}
-                  usages={usages}
-                  description={description}
-                  meaning={meaning}
-                  tags={tags}
-                  user={user}
-                  likes={likes!}
-                  isSmallScreen
-                />
-              );
+          if (tab === SEARCH_TAB_NAME.USER) {
+            return (
+              <div className={styles.profile}>
+                <ProfileHeader key={data._id} user={data as IUser} />
+              </div>
+            );
+          } else if (
+            tab === SEARCH_TAB_NAME.PHRASE ||
+            tab === SEARCH_TAB_NAME.TAG
+          ) {
+            const {
+              _id,
+              phrase,
+              usages,
+              description,
+              meaning,
+              tags,
+              user,
+              likes,
+            } = data as CardWithUser;
+            return (
+              <Card
+                key={_id!}
+                cardId={_id!}
+                phrase={phrase}
+                usages={usages}
+                description={description}
+                meaning={meaning}
+                tags={tags}
+                user={user}
+                likes={likes!}
+                isSmallScreen
+              />
+            );
           }
         })
       ) : (

@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 import SearchContent from "./SearchContent";
 import { SEARCH_TAB_NAME } from "../../types/index.d";
 import { searchUser } from "../../services/userServices";
-import { searchCardByTag } from "../../services/cardServices";
+import { searchCard } from "../../services/cardServices";
 import InputField from "../Form/InputField";
 import { IUser } from "../../types/user.d";
 import { CardWithUser } from "../../types/card.d";
@@ -19,15 +19,21 @@ const Search = () => {
     if (!keyword) {
       return setSearchedDatas(null);
     }
+
     switch (selectedTab) {
-      case SEARCH_TAB_NAME.USER:
-        searchUser(keyword).then(({ data }) => {
-          setSearchedDatas(data.users);
+      case SEARCH_TAB_NAME.PHRASE:
+        searchCard(keyword, "phrase").then(({ data }) => {
+          setSearchedDatas(data.cards);
         });
         break;
       case SEARCH_TAB_NAME.TAG:
-        searchCardByTag(keyword).then(({ data }) => {
+        searchCard(keyword, "tag").then(({ data }) => {
           setSearchedDatas(data.cards);
+        });
+        break;
+      case SEARCH_TAB_NAME.USER:
+        searchUser(keyword).then(({ data }) => {
+          setSearchedDatas(data.users);
         });
         break;
     }
@@ -46,12 +52,12 @@ const Search = () => {
       />
       <ul className={styles.tabLists}>
         <li
-          onClick={() => setSelectedTab(SEARCH_TAB_NAME.USER)}
+          onClick={() => setSelectedTab(SEARCH_TAB_NAME.PHRASE)}
           className={
-            isSelected(SEARCH_TAB_NAME.USER) ? styles.active : undefined
+            isSelected(SEARCH_TAB_NAME.PHRASE) ? styles.active : undefined
           }
         >
-          User
+          Phrase
         </li>
 
         <li
@@ -64,6 +70,14 @@ const Search = () => {
           }
         >
           Tag
+        </li>
+        <li
+          onClick={() => setSelectedTab(SEARCH_TAB_NAME.USER)}
+          className={
+            isSelected(SEARCH_TAB_NAME.USER) ? styles.active : undefined
+          }
+        >
+          User
         </li>
       </ul>
       {searchedDatas && (

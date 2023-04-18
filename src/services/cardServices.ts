@@ -88,12 +88,13 @@ export const getBookCards = async (cardIds: string[]) => {
   return await sendAxiosRequest(options);
 };
 
-export const searchCardByTag = async (keyword: string) => {
+export const searchCard = async (keyword: string, type: string) => {
   const options = {
     method: RequestMethod.GET,
     url: `${import.meta.env.VITE_SERVER_URL}/api/v1/cards/search`,
     params: {
       keyword,
+      type,
     },
   };
   return await sendAxiosRequest(options);

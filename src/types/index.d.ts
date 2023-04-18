@@ -11,9 +11,7 @@ export interface AxiosOption {
 }
 
 export enum SEARCH_TAB_NAME {
-  TOP = "TOP",
   USER = "USER",
-  LANGUAGE = "LANGUAGE",
-  DIALECT = "DIALECT",
   TAG = "TAG",
+  PHRASE = "PHRASE",
 }
