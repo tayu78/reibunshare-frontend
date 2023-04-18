@@ -21,6 +21,7 @@ const TagsField = ({ dispatch, tags }: Props) => {
 
   return (
     <>
+      <label className={styles.label}>tag</label>
       <div className={styles.inputsContainer}>
         <div className={styles.inputWrapper}>
           <InputField

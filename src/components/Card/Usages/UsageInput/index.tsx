@@ -35,6 +35,7 @@ const UsageInput = ({ dispatch, usages }: Props) => {
 
   return (
     <div>
+      <label className={styles.label}>example sentences </label>
       <div className={styles.inputsContainer}>
         <div
           onClick={(e) => {

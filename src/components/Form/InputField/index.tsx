@@ -11,6 +11,7 @@ type Props = {
   errorMessages?: string[];
   onBlur?: () => void;
   type?: string;
+  label?: string;
 };
 
 const InputField = ({
@@ -21,9 +22,12 @@ const InputField = ({
   errorMessages,
   onBlur,
   type = "text",
+  label,
 }: Props) => {
   return (
     <>
+      {label && <label className={styles.label}>{label}</label>}
+
       {textarea ? (
         <textarea
           className={`${styles.input} ${styles.textarea}`}

@@ -49,6 +49,7 @@ const NewCard = ({ closeModal }: Props) => {
       <div className={styles.cardContent}>
         <div className={styles.fieldWrapper}>
           <InputField
+            label="phrase"
             placeholder="phrase..."
             handleChange={(e) =>
               dispatch(setPhraseAction(e as ChangeEvent<HTMLInputElement>))
@@ -62,6 +63,7 @@ const NewCard = ({ closeModal }: Props) => {
         </div>
         <div className={styles.fieldWrapper}>
           <InputField
+            label="meaning"
             placeholder="meaning..."
             handleChange={(e) =>
               dispatch(setMeaningAction(e as ChangeEvent<HTMLTextAreaElement>))
@@ -73,6 +75,7 @@ const NewCard = ({ closeModal }: Props) => {
 
         <div className={styles.fieldWrapper}>
           <InputField
+            label="description"
             placeholder="description..."
             handleChange={(e) =>
               dispatch(
