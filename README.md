@@ -42,7 +42,8 @@ card contains
 
 we can see list of card other people created.  You can imagine like timelines of twitter.
 
-<img width="700" alt="スクリーンショット 2023-04-18 18 46 48" src="https://user-images.githubusercontent.com/73221904/232947139-29218a4b-810d-41d0-83f5-b3f65ee76cbc.png">
+<img width="700" alt="スクリーンショット 2023-04-20 11 45 54" src="https://user-images.githubusercontent.com/73221904/233459346-c5c88994-22fe-444f-b252-c977c7082d90.png">
+
 
 **create card**
 
