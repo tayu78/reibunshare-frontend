@@ -17,39 +17,65 @@ From above reason, I decided to create app which allows app user to
 -  see example created by others
 
 
-## How to use?
+## Tech Stack
+- Typescript
+- React
+- Redux
+- Node.js
+- MongoDB
+- socket.io
+- json web token
+
+[this](https://github.com/tayu78/reibunshare-backend) is backend code's link!
+
+
+## Preview
 ### card
+card contains 
+- phrase
+- usage(reibun)
+- meaning
+- description
+- tags
+
+**card list**
+
+we can see list of card other people created.  You can imagine like timelines of twitter.
 
 <img width="700" alt="スクリーンショット 2023-04-18 18 46 48" src="https://user-images.githubusercontent.com/73221904/232947139-29218a4b-810d-41d0-83f5-b3f65ee76cbc.png">
 
-create card
+**create card**
 
 <img width="700" alt="スクリーンショット 2023-04-18 19 06 18" src="https://user-images.githubusercontent.com/73221904/232947886-e73968d5-5435-4868-8aec-defbff1f1469.png">
 
 
-comment
+**comment**
 
 <img width="700" alt="スクリーンショット 2023-04-18 18 47 26" src="https://user-images.githubusercontent.com/73221904/232947160-d8057d81-6c3d-400a-a455-892284647e3d.png">
 
-search
+**search**
 
 <img width="700" alt="スクリーンショット 2023-04-18 19 03 40" src="https://user-images.githubusercontent.com/73221904/232947543-a8d55367-9bd9-4b4a-9b31-ec96868af92f.png">
 
 ### Book
-book list in profile page
+User can create book to categorize card.
+
+**book list in profile page**
 
 <img width="700" alt="スクリーンショット 2023-04-18 18 48 20" src="https://user-images.githubusercontent.com/73221904/232947326-d7b9f32a-77f1-4a7d-b4e6-2b08383489f4.png">
 
-add to book
+**add to book**
 
 <img width="700" alt="スクリーンショット 2023-04-18 18 48 04" src="https://user-images.githubusercontent.com/73221904/232947202-b00ca11c-083c-46ca-ace4-538e3a11ba53.png">
 
-go inside book
+**go inside book**
 
 <img width="700" alt="スクリーンショット 2023-04-18 18 59 09" src="https://user-images.githubusercontent.com/73221904/232947345-879f61ff-98b5-461c-a060-9f3f5853b055.png">
 
 
 ### Notification
+User can recieve notification when other user follow them , comment on card or like card. They can get notification realtime as I used socket.io.
+
 <img width="700" alt="スクリーンショット 2023-04-18 18 48 44" src="https://user-images.githubusercontent.com/73221904/232947255-7a58ffe9-55c0-438e-b182-b782a540e161.png">
 
 
@@ -64,15 +90,4 @@ go inside book
 
 
 
-
-## Tech Stack
-- Typescript
-- React
-- Redux
-- Node.js
-- MongoDB
-- socket.io
-- json web token
-
-[this](https://github.com/tayu78/reibunshare-backend) is backend code's link!
 
